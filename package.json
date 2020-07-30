@@ -1,0 +1,51 @@
+{
+  "name": "herbs2gql",
+  "version": "1.0.0",
+  "description": "Domain entities javascript library.",
+  "main": "./src/herbs2gql.js",
+  "scripts": {
+    "test": "mocha --timeout 999999 --colors --recursive ./test"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "test",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/herbsjs/herbs2gql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/herbsjs/herbs2gql/issues/"
+  },
+  "engines": {
+    "node": ">= 12.3.0"
+  },
+  "keywords": [
+    "domain",
+    "entity",
+    "value object",
+    "DDD",
+    "clean architecture"
+  ],
+  "author": "Jhonathan Soares",
+  "license": "MIT",
+  "homepage": "https://github.com/herbsjs/herbs2gql#readme",
+  "dependencies": {
+    "gotu": "^1.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0",
+    "prettier": "^2.0.5",
+    "apollo-server": "^2.16.1",
+    "apollo-server-express": "^2.16.1",
+    "graphql": "^15.3.0",
+    "express": "^4.17.1",
+    "dotenv": "^8.2.0"
+  }
+}
