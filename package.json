@@ -32,7 +32,9 @@
   "license": "MIT",
   "homepage": "https://github.com/herbsjs/herbs2gql#readme",
   "dependencies": {
-    "gotu": "^1.0.6"
+    "buchu": "^1.0.6",
+    "gotu": "^1.0.6",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "eslint": "^7.5.0",
