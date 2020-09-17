@@ -1,40 +1,57 @@
 const usecase = require("buchu/src/usecase")
 const { camelCase } = require("lodash")
 
-function requestFieldType2gql(type) {
+function requestFieldType2gql(type, presence) {
     let name
     if (Array.isArray(type))
-        name = `[${requestFieldType2gql(type[0])}]`
+        name = `[${requestFieldType2gql(type[0], presence)}]`
     else if (type === Number)
         name = `Float`
     else
         name = type.name
-    return name
+
+    return presence ? `${name}!` : name
 }
 
-function usecaseRequest2gql(useCase) {
+function usecaseRequest2gql(useCase, presence) {
     const fields = Object.keys(useCase.requestSchema)
     const output = [];
     for (const field of fields) {
         const type = useCase.requestSchema[field]
-        let name = requestFieldType2gql(type)
+        let name = requestFieldType2gql(type, presence)
         output.push(`    ${field}: ${name}`);
-        
+
     }
     return output.join(`,\n`)
 }
 
-function usecaseResponse2gql(useCase) {    
-    let name = requestFieldType2gql(useCase.responseSchema)
+function usecaseResponse2gql(useCase, presence) {
+    let name = requestFieldType2gql(useCase.responseSchema, presence)
     return name;
 }
 
-function usecase2query(useCase) {
+function schemaOptions(options) {
+    return Object.assign({
+        presenceOnRequest: false,
+        presenceOnResponse: false
+    }, options || {})
+}
+
+function usecase2query(useCase, options) {
+
+    const {
+        presenceOnRequest,
+        presenceOnResponse
+    } = schemaOptions(options)
+
     let gql = ''
     gql += `type Query {\n`
-    gql += `    ${camelCase(useCase.description)} (${usecaseRequest2gql(useCase)}) : ${usecaseResponse2gql(useCase)}\n`
+    gql += `    ${camelCase(useCase.description)} (${usecaseRequest2gql(useCase, presenceOnRequest)}) : ${usecaseResponse2gql(useCase, presenceOnResponse)}\n`
     gql += '}'
     return gql
 }
 
+
 module.exports = usecase2query
+
+
