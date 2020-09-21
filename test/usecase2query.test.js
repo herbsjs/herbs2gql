@@ -16,7 +16,7 @@ describe('UseCase 2 GQL String', () => {
                     booleanField: Boolean
                 },
 
-                response: String
+                response: Boolean
             });
 
             // when
@@ -24,7 +24,7 @@ describe('UseCase 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : String\n}`
+                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
             )
         })
     })
@@ -40,7 +40,7 @@ describe('UseCase 2 GQL String', () => {
                     booleanField: [Boolean]
                 },
 
-                response: String
+                response: Boolean
             });
 
             // when
@@ -48,7 +48,7 @@ describe('UseCase 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : String\n}`
+                `type Query {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
             )
         })
 
@@ -62,7 +62,7 @@ describe('UseCase 2 GQL String', () => {
                     booleanField: Boolean
                 },
 
-                response: [String]
+                response: [Boolean]
             });
 
             // when
@@ -70,7 +70,7 @@ describe('UseCase 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [String]\n}`
+                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
             )
         })
     })
