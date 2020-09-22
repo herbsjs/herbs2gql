@@ -1,3 +1,4 @@
+const { pascalCase } = require("./helpers/stringCase")
 
 function entityFieldType2gql(type) {
     let name
@@ -23,7 +24,7 @@ function entityField2gql(entity) {
 
 function entity2gql(entity) {
     let gql = ''
-    gql += `type ${entity.name} {\n`
+    gql += `type ${pascalCase(entity.name)} {\n`
     gql += entityField2gql(entity)
     gql += '}'
     return gql

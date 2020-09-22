@@ -24,7 +24,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
             )
         })
     })
@@ -48,7 +48,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
             )
         })
 
@@ -70,7 +70,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
             )
         })
     })
@@ -94,7 +94,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User\n}`
             )
         })
 
@@ -116,7 +116,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
             )
         })
     })
@@ -142,7 +142,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User\n}`
             )
         })
 
@@ -166,7 +166,7 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User!\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User!\n}`
             )
         })
 
@@ -191,7 +191,32 @@ describe('Subscription 2 GQL String', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User!\n}`
+                `extend type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User!\n}`
+            )
+        })
+
+        it('should convert a usecase with not nullable request params types and not nullable gotu array entity output to GQL', async () => {
+            // given
+            const givenAnUseCase = usecase('UseCaseTest', {
+                request: {
+                    stringField: String,
+                    numberField: Number,
+                    dateField: Date,
+                    booleanField: Boolean
+                },
+    
+                response: [User]
+            });
+    
+            // when
+            const gql = usecase2subscription(givenAnUseCase, {
+                presenceOnRequest: true,
+                presenceOnResponse: true
+            })
+    
+            // then
+            assert.deepStrictEqual(gql,
+                `extend type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : [User]!\n}`
             )
         })
     })
