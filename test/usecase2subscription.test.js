@@ -1,9 +1,9 @@
 const assert = require('assert')
 const { usecase } = require('buchu')
-const usecase2query = require('../src/usecase2query')
+const usecase2subscription = require('../src/usecase2subscription')
 const User = require('./support/gotu/users')
 
-describe('UseCase 2 GQL String', () => {
+describe('Subscription 2 GQL String', () => {
 
     context('when schema is simple data', () => {
         it('should convert a usecase with primitive request params types and basic output to GQL', async () => {
@@ -20,11 +20,11 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase,)
+            const gql = usecase2subscription(givenAnUseCase,)
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
             )
         })
     })
@@ -44,11 +44,11 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const gql = usecase2subscription(givenAnUseCase)
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
+                `type Subscription {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
             )
         })
 
@@ -66,11 +66,11 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const gql = usecase2subscription(givenAnUseCase)
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
             )
         })
     })
@@ -90,11 +90,11 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const gql = usecase2subscription(givenAnUseCase)
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User\n}`
             )
         })
 
@@ -112,11 +112,11 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const gql = usecase2subscription(givenAnUseCase)
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
             )
         })
     })
@@ -136,13 +136,13 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const gql = usecase2subscription(givenAnUseCase, {
                 presenceOnRequest: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User\n}`
             )
         })
 
@@ -160,13 +160,13 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const gql = usecase2subscription(givenAnUseCase, {
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User!\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User!\n}`
             )
         })
 
@@ -184,14 +184,14 @@ describe('UseCase 2 GQL String', () => {
             });
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const gql = usecase2subscription(givenAnUseCase, {
                 presenceOnRequest: true,
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `type Query {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User!\n}`
+                `type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User!\n}`
             )
         })
     })
