@@ -21,7 +21,18 @@ const entity = entity('User', {
     active: field(Boolean),
 })
 
-const gql = entity2gql(entity)
+const gql = entity2type(entity)
+```
+
+To convert a herbs entity to GraphQl Input:
+
+```
+const entity = entity('UserFilter', {    
+    name: field(String),    
+    age: field(Number),    
+})
+
+const gql = entity2input(entity)
 ```
 
 To convert a usecase to GraphQl Query:
@@ -69,3 +80,5 @@ const usecase = usecase('New User Notification', {
 
 const gql = usecase2mutation(usecase)
 ```
+
+Additionally you can view a simple demo application of this library in [todolist-on-herbs](https://github.com/herbsjs/todolist-on-herbs).

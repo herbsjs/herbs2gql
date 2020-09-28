@@ -1,9 +1,9 @@
 const assert = require('assert')
 const { usecase } = require('buchu')
-const usecase2query = require('../src/usecase2query')
+const { usecase2query } = require("../src/herbs2gql")
 const User = require('./support/gotu/users')
 
-describe('UseCase 2 GQL String', () => {
+describe('UseCase 2 GQL Query', () => {
 
     context('when schema is simple data', () => {
         it('should convert a usecase with primitive request params types and basic output to GQL', async () => {
