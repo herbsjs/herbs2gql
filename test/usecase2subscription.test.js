@@ -17,7 +17,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: Boolean
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase,)
@@ -41,7 +41,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: Boolean
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase)
@@ -63,7 +63,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: [Boolean]
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase)
@@ -87,7 +87,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase)
@@ -109,7 +109,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: [User]
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase)
@@ -133,7 +133,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase, {
@@ -157,7 +157,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase, {
@@ -181,7 +181,7 @@ describe('Subscription 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2subscription(givenAnUseCase, {
@@ -206,7 +206,7 @@ describe('Subscription 2 GQL String', () => {
                 },
     
                 response: [User]
-            });
+            })
     
             // when
             const gql = usecase2subscription(givenAnUseCase, {

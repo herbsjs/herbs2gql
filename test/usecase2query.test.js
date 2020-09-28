@@ -17,7 +17,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: Boolean
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase,)
@@ -41,7 +41,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: Boolean
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase)
@@ -63,7 +63,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: [Boolean]
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase)
@@ -87,7 +87,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase)
@@ -109,7 +109,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: [User]
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase)
@@ -133,7 +133,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase, {
@@ -157,7 +157,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase, {
@@ -181,7 +181,7 @@ describe('UseCase 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2query(givenAnUseCase, {
@@ -206,7 +206,7 @@ describe('UseCase 2 GQL String', () => {
                 },
     
                 response: [User]
-            });
+            })
     
             // when
             const gql = usecase2query(givenAnUseCase, {

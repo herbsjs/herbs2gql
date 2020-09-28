@@ -17,10 +17,10 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: Boolean
-            });
+            })
 
             // when
-            const gql = usecase2mutation(givenAnUseCase,)
+            const gql = usecase2mutation(givenAnUseCase)
 
             // then
             assert.deepStrictEqual(gql,
@@ -41,7 +41,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: Boolean
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase)
@@ -63,7 +63,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: [Boolean]
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase)
@@ -87,7 +87,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase)
@@ -109,7 +109,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: [User]
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase)
@@ -133,7 +133,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase, {
@@ -157,7 +157,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase, {
@@ -181,7 +181,7 @@ describe('Mutation 2 GQL String', () => {
                 },
 
                 response: User
-            });
+            })
 
             // when
             const gql = usecase2mutation(givenAnUseCase, {
@@ -206,7 +206,7 @@ describe('Mutation 2 GQL String', () => {
                 },
     
                 response: [User]
-            });
+            })
     
             // when
             const gql = usecase2mutation(givenAnUseCase, {

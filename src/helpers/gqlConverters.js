@@ -14,11 +14,11 @@ function requestFieldType2gql(type, presence) {
 
 function usecaseRequest2gql(useCase, presence) {
     const fields = Object.keys(useCase.requestSchema)
-    const output = [];
+    const output = []
     for (const field of fields) {
         const type = useCase.requestSchema[field]
         let name = requestFieldType2gql(type, presence)
-        output.push(`    ${field}: ${name}`);
+        output.push(`    ${field}: ${name}`)
 
     }
     return output.join(`,\n`)
@@ -26,7 +26,7 @@ function usecaseRequest2gql(useCase, presence) {
 
 function usecaseResponse2gql(useCase, presence) {
     let name = requestFieldType2gql(useCase.responseSchema, presence)
-    return name;
+    return name
 }
 
 function schemaOptions(options) {

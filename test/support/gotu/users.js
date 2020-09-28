@@ -8,4 +8,4 @@ const User =
         hasAccess: field(Boolean),
     })
 
-module.exports = User;
+module.exports = User
