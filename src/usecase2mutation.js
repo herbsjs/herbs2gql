@@ -1,5 +1,5 @@
 const { camelCase } = require('lodash')
-const { schemaOptions, usecaseRequest2gql, usecaseResponse2gql, usecaseFieldToParams } = require("./helpers/gqlConverters")
+const { schemaOptions, usecaseResponse2gql, usecaseFieldToParams } = require("./helpers/gqlConverters")
 const { checker } = require('suma')
 const { useCaseValidator } = require('./herbsValidator')
 
