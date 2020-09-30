@@ -5,6 +5,25 @@ const User = require('./support/gotu/users')
 
 describe('UseCase 2 GQL Subscription', () => {
 
+    context('when schema does\'t contain request', () => {
+
+        it('should convert a usecase without request and basic output to GQL', async () => {
+            // given
+            const givenAnUseCase = usecase('UseCaseTest', {
+                response: Boolean
+            })
+
+            // when
+            const gql = usecase2subscription(givenAnUseCase)
+
+            // then
+            assert.deepStrictEqual(gql,
+                `extend type Subscription {\n    useCaseTest : Boolean\n}`
+            )
+        })
+
+    })
+
     context('when schema is simple data', () => {
         it('should convert a usecase with primitive request params types and basic output to GQL', async () => {
             // given
@@ -220,4 +239,47 @@ describe('UseCase 2 GQL Subscription', () => {
             )
         })
     })
+
+    context('when usecase is invalid', () => {
+
+        it('should throw error if usecase name is empty', async () => {
+            // given
+            const givenAnUseCase = usecase('', {
+                request: {
+                    stringField: String,
+                    numberField: Number,
+                    dateField: Date,
+                    booleanField: Boolean
+                },
+
+                response: Boolean
+            })
+
+            // then
+            assert.throws(() => usecase2subscription(givenAnUseCase), {
+                invalidArgs: {
+                    useCaseName: [{ cantBeEmpty: true }]
+                }
+            })
+        })
+
+        it('should throw error if response name is not defined', async () => {
+            // given
+            const givenAnUseCase = usecase('UseCaseTest', {
+                request: {
+                    stringField: String,
+                    numberField: Number,
+                    dateField: Date,
+                    booleanField: Boolean
+                }
+            })
+
+            // then
+            assert.throws(() => usecase2subscription(givenAnUseCase), {
+                invalidArgs: { response: [{ cantBeEmpty: true }] }
+            })
+        })
+
+    })
+
 })

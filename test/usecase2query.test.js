@@ -5,6 +5,25 @@ const User = require('./support/gotu/users')
 
 describe('UseCase 2 GQL Query', () => {
 
+    context('when schema does\'t contain request', () => {
+
+        it('should convert a usecase without request and basic output to GQL', async () => {
+            // given
+            const givenAnUseCase = usecase('UseCaseTest', {
+                response: Boolean
+            })
+
+            // when
+            const gql = usecase2query(givenAnUseCase)
+
+            // then
+            assert.deepStrictEqual(gql,
+                `extend type Query {\n    useCaseTest : Boolean\n}`
+            )
+        })
+
+    })
+
     context('when schema is simple data', () => {
         it('should convert a usecase with primitive request params types and basic output to GQL', async () => {
             // given
@@ -20,7 +39,7 @@ describe('UseCase 2 GQL Query', () => {
             })
 
             // when
-            const gql = usecase2query(givenAnUseCase,)
+            const gql = usecase2query(givenAnUseCase)
 
             // then
             assert.deepStrictEqual(gql,
@@ -204,16 +223,16 @@ describe('UseCase 2 GQL Query', () => {
                     dateField: Date,
                     booleanField: Boolean
                 },
-    
+
                 response: [User]
             })
-    
+
             // when
             const gql = usecase2query(givenAnUseCase, {
                 presenceOnRequest: true,
                 presenceOnResponse: true
             })
-    
+
             // then
             assert.deepStrictEqual(gql,
                 `extend type Query {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : [User]!\n}`
@@ -221,5 +240,46 @@ describe('UseCase 2 GQL Query', () => {
         })
     })
 
-   
+    context('when usecase is invalid', () => {
+
+        it('should throw error if usecase name is empty', async () => {
+            // given
+            const givenAnUseCase = usecase('', {
+                request: {
+                    stringField: String,
+                    numberField: Number,
+                    dateField: Date,
+                    booleanField: Boolean
+                },
+
+                response: Boolean
+            })
+
+            // then
+            assert.throws(() => usecase2query(givenAnUseCase), {
+                invalidArgs: {
+                    useCaseName: [{ cantBeEmpty: true }]
+                }
+            })
+        })
+
+        it('should throw error if response name is not defined', async () => {
+            // given
+            const givenAnUseCase = usecase('UseCaseTest', {
+                request: {
+                    stringField: String,
+                    numberField: Number,
+                    dateField: Date,
+                    booleanField: Boolean
+                }
+            })
+
+            // then
+            assert.throws(() => usecase2query(givenAnUseCase), {
+                invalidArgs: { response: [{ cantBeEmpty: true }] }
+            })
+        })
+
+    })
+
 })

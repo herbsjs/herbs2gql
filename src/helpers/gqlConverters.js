@@ -1,4 +1,5 @@
-const { pascalCase } = require("./stringCase")
+const { pascalCase } = require('./stringCase')
+const { checker } = require('suma')
 
 function requestFieldType2gql(type, presence) {
     let name
@@ -68,10 +69,17 @@ function fieldOptions2gpq(options) {
     return optionsGql
 }
 
+function usecaseFieldToParams(useCase, schema) {
+    const hasResponse = !checker.isEmpty(useCase.requestSchema)
+    if (hasResponse) return `(${usecaseRequest2gql(useCase, schema.presenceOnRequest)}) `
+    return ''
+}
+
 module.exports = {
     requestFieldType2gql,
     usecaseRequest2gql,
     usecaseResponse2gql,
+    usecaseFieldToParams,
     schemaOptions,
     entityFieldType2gql,
     entityField2gql

@@ -35,7 +35,8 @@
   "dependencies": {
     "buchu": "^1.0.7",
     "gotu": "^1.0.6",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.20",
+    "suma": "^1.0.6"
   },
   "devDependencies": {
     "apollo-server": "^2.16.1",
