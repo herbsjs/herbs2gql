@@ -5,7 +5,7 @@
   "main": "./src/herbs2gql.js",
   "scripts": {
     "test": "mocha --timeout 999999 --colors --recursive ./test",
-    "coverage": "nyc --reporter=html mocha src/**/*.test.js npm test"
+    "coverage": "nyc --reporter=lcov --reporter=text-summary mocha src/**/*.test.js npm test"
   },
   "directories": {
     "lib": "src",
