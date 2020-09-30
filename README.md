@@ -1,10 +1,84 @@
-<p align="center"><img src="https://raw.githubusercontent.com/herbsjs/herbs2gql/master/docs/logo.png" height="220"></p>
-
-![Node.js CI](https://github.com/herbsjs/herbs2gql/workflows/Node.js%20CI/badge.svg?branch=master)[![codecov](https://codecov.io/gh/herbsjs/herbs2gql/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/herbs2gql)
-
 # herbs2gql
 
-herbs2gql creates graphql apollo types based on herbs entities (gotu)
+herbs2gql creates graphql apollo types based on herbs entities (gotu) and herbs usecase (buchu)
 
 ### Installing
-    $ npm install herbs2gql
+
+$ npm install herbs2gql
+
+### Using
+
+All methods returns a string in GraphQl format representing the type based.
+
+To convert a herbs entity to GraphQl Type:
+
+```
+const entity = entity('User', {
+    id: field(String),
+    name: field(String),
+    document: field(String),
+    age: field(Number),
+    active: field(Boolean),
+})
+
+const gql = entity2type(entity)
+```
+
+To convert a herbs entity to GraphQl Input:
+
+```
+const entity = entity('UserFilter', {    
+    name: field(String),    
+    age: field(Number),    
+})
+
+const gql = entity2input(entity)
+```
+
+To convert a usecase to GraphQl Query:
+
+```
+const usecase = usecase('Get User', {
+    request: {
+        id: Number,
+        document: String
+    },
+
+    response: User
+})
+
+const gql = usecase2query(usecase)
+```
+
+To convert a usecase to GraphQL Mutation:
+
+```
+const usecase = usecase('Update User', {
+    request: {
+        id: Number,
+        name: String,
+        age: Number,
+        active: Boolean
+    },
+
+    response: User
+})
+
+const gql = usecase2mutation(usecase)
+```
+
+To convert a usecase to GraphQL Subscription:
+
+```
+const usecase = usecase('New User Notification', {
+    request: {
+        id: Number,        
+    },
+
+    response: UserMessage
+})
+
+const gql = usecase2mutation(usecase)
+```
+
+Additionally you can view a simple demo application of this library in [todolist-on-herbs](https://github.com/herbsjs/todolist-on-herbs).
