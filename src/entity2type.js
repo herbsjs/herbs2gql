@@ -1,4 +1,4 @@
-const { camelCase, startCase } = require('lodash')
+const { camelCase, upperFirst } = require('lodash')
 const { entityField2gql } = require("./helpers/gqlConverters")
 const { checker } = require('suma')
 const { entityValidator } = require('./herbsValidator')
@@ -12,7 +12,7 @@ function entity2type(entity) {
   }
 
   let gql = ""
-  gql += `type ${startCase(camelCase(entity.name))} {\n`
+  gql += `type ${upperFirst(camelCase(entity.name))} {\n`
   gql += entityField2gql(entity)
   gql += "}"
   return gql

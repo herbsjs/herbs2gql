@@ -46,7 +46,7 @@ describe("Entity 2 GQL Type", () => {
 
     it("should convert a entity with long name to type", async () => {
       // given
-      const givenAnEntity = entity("Chield Entity", {
+      const givenAnEntity = entity("Chield Entity GQL", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -69,7 +69,7 @@ describe("Entity 2 GQL Type", () => {
       // then
       assert.deepStrictEqual(
         gql,
-        `type Chield Entity {
+        `type ChieldEntityGql {
     stringField: String
     stringArrayField: [String]
     numberField: Float
