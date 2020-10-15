@@ -3,7 +3,7 @@ const { usecase } = require('buchu')
 const { usecase2mutation } = require("../src/herbs2gql")
 const User = require('./support/gotu/users')
 
-describe('UseCase 2 GQL Mutation', () => {
+describe('UseCase 2GQL Mutation', () => {
 
     context('when schema does\'t contain request', () => {
 

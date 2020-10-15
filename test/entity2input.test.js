@@ -2,7 +2,7 @@ const assert = require("assert")
 const { entity, field } = require("gotu")
 const { entity2input } = require("../src/herbs2gql")
 
-describe("Entity 2 GQL Input", () => {
+describe("Entity 2GQL Input", () => {
 
   context('when entity is valid', () => {
     it("should convert a entity to input", async () => {
