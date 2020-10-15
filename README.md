@@ -1,6 +1,6 @@
 # herbs2gql
 
-herbs2gql creates graphql apollo types based on herbs entities (gotu) and herbs usecase (buchu)
+herbs2gql creates graphql [apollo](https://www.apollographql.com/) types based on herbs entities (gotu) and herbs usecase (buchu)
 
 ### Installing
 
