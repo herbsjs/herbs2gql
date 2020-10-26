@@ -84,6 +84,34 @@ describe("Entity 2GQL Type", () => {
 }`
       )
     })
+
+    it("should convert a entity to type when entity has entity references", async () => {
+      // given
+      const givenAnFirstEntity = entity("Entity One", {
+        numberField: field(Number),
+        customEntityFunction: function(){}        
+      })
+
+      const givenAnSecondEntity = entity("Entity Two", {        
+        entityField: field(givenAnFirstEntity),
+        customEntityFunction: function(){}        
+      })
+
+      // when
+      const gql = `${entity2type(givenAnFirstEntity)}
+      ${entity2type(givenAnSecondEntity)}`
+
+      // then
+      assert.deepStrictEqual(
+        gql,
+        `type EntityOne {
+    numberField: Float
+}
+      type EntityTwo {
+    entityField: EntityOne
+}`
+      )
+    })
   })
 
   context('when entity is invalid', () => {
