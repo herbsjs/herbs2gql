@@ -20,7 +20,8 @@ describe("Entity 2GQL Type", () => {
         booleanField: field(Boolean),
         booleanArrayField: field([Boolean]),
         dateField: field(Date),
-        dateArrayField: field([Date])
+        dateArrayField: field([Date]),
+        customEntityFunction: function(){}        
       })
 
       // when

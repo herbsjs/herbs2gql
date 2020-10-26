@@ -46,9 +46,12 @@ function entityFieldType2gql(type) {
 }
 
 function entityField2gql(entity) {
-    const fields = Object.keys(entity.prototype.meta.schema)
+    const fields = Object.keys(entity.prototype.meta.schema)    
     let gql = ""
     for (const field of fields) {
+        
+        if(typeof entity.prototype.meta.schema[field] === 'function') continue
+
         const { type, options } = entity.prototype.meta.schema[field]
 
         let name = entityFieldType2gql(type)
