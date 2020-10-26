@@ -7,7 +7,7 @@ describe("Entity 2GQL Input", () => {
   context('when entity is valid', () => {
     it("should convert a entity to input", async () => {
       // given
-      const givenAnInput = entity("GQLInput", {
+      const givenAnInput = entity("GQL", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -30,7 +30,7 @@ describe("Entity 2GQL Input", () => {
       // then
       assert.deepStrictEqual(
         gql,
-        `input gqlInput {
+        `input GqlInput {
     stringField: String
     stringArrayField: [String]
     numberField: Float
@@ -47,7 +47,7 @@ describe("Entity 2GQL Input", () => {
 
     it("should convert a input with long name to type", async () => {
       // given
-      const givenAnInput = entity("Chield GQL Input", {
+      const givenAnInput = entity("Chield GQL ", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -70,7 +70,7 @@ describe("Entity 2GQL Input", () => {
       // then
       assert.deepStrictEqual(
         gql,
-        `input chieldGqlInput {
+        `input ChieldGqlInput {
     stringField: String
     stringArrayField: [String]
     numberField: Float
