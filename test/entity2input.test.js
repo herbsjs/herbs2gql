@@ -30,7 +30,7 @@ describe("Entity 2GQL Input", () => {
       // then
       assert.deepStrictEqual(
         gql,
-        `input GqlInput {
+        `input gqlInput {
     stringField: String
     stringArrayField: [String]
     numberField: Float
@@ -70,7 +70,7 @@ describe("Entity 2GQL Input", () => {
       // then
       assert.deepStrictEqual(
         gql,
-        `input ChieldGqlInput {
+        `input chieldGqlInput {
     stringField: String
     stringArrayField: [String]
     numberField: Float
