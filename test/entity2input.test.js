@@ -7,7 +7,7 @@ describe("Entity 2GQL Input", () => {
   context('when entity is valid', () => {
     it("should convert a entity to input", async () => {
       // given
-      const givenAnInput = entity("GQLInput", {
+      const givenAnInput = entity("GQL", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -21,7 +21,8 @@ describe("Entity 2GQL Input", () => {
         booleanField: field(Boolean),
         booleanArrayField: field([Boolean]),
         dateField: field(Date),
-        dateArrayField: field([Date])
+        dateArrayField: field([Date]),
+        customEntityFunction: function(){}        
       })
 
       // when
@@ -47,7 +48,7 @@ describe("Entity 2GQL Input", () => {
 
     it("should convert a input with long name to type", async () => {
       // given
-      const givenAnInput = entity("Chield GQL Input", {
+      const givenAnInput = entity("Chield GQL ", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),

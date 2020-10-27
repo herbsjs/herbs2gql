@@ -1,5 +1,7 @@
-const { pascalCase } = require('./stringCase')
 const { checker } = require('suma')
+const { camelCase, upperFirst } = require('lodash')
+const { BaseEntity } = require('gotu/src/baseEntity')
+const { pascalCase } = require('./stringCase')
 
 function requestFieldType2gql(type, presence) {
     let name
@@ -41,14 +43,18 @@ function entityFieldType2gql(type) {
     let name
     if (Array.isArray(type)) name = `[${entityFieldType2gql(type[0])}]`
     else if (type === Number) name = `Float`
+    else if (type.prototype instanceof BaseEntity) name = upperFirst(camelCase(type.name))
     else name = type.name
     return name
 }
 
 function entityField2gql(entity) {
-    const fields = Object.keys(entity.prototype.meta.schema)
+    const fields = Object.keys(entity.prototype.meta.schema)    
     let gql = ""
     for (const field of fields) {
+        
+        if(typeof entity.prototype.meta.schema[field] === 'function') continue        
+
         const { type, options } = entity.prototype.meta.schema[field]
 
         let name = entityFieldType2gql(type)
