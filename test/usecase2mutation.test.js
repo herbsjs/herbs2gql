@@ -1,5 +1,6 @@
 const assert = require('assert')
 const { usecase } = require('buchu')
+const { entity, field } = require('gotu')
 const { usecase2mutation } = require("../src/herbs2gql")
 const User = require('./support/gotu/users')
 
@@ -117,14 +118,21 @@ describe('UseCase 2GQL Mutation', () => {
             )
         })
 
-        it('should convert a usecase with primitive request params types and gotu array entity output to GQL', async () => {
+        it('should convert an usecase with entity types and entity array on request params types and gotu array entity output to GQL', async () => {
             // given
+            const GivenAnEntity = entity("Entity", {
+                numberField: field(Number),
+                customEntityFunction: function(){}        
+            })
+
             const givenAnUseCase = usecase('UseCaseTest', {
                 request: {
                     stringField: String,
                     numberField: Number,
                     dateField: Date,
-                    booleanField: Boolean
+                    booleanField: Boolean,
+                    entityField: GivenAnEntity,
+                    entityFieldArray: [GivenAnEntity]
                 },
 
                 response: [User]
@@ -135,7 +143,7 @@ describe('UseCase 2GQL Mutation', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Mutation {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
+                `extend type Mutation {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean,\n    entityField: EntityInput,\n    entityFieldArray: [EntityInput]) : [User]\n}`
             )
         })
     })

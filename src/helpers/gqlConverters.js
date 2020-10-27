@@ -3,12 +3,14 @@ const { camelCase, upperFirst } = require('lodash')
 const { BaseEntity } = require('gotu/src/baseEntity')
 const { pascalCase } = require('./stringCase')
 
-function requestFieldType2gql(type, presence) {
+function requestFieldType2gql(type, presence, input) {
     let name
     if (Array.isArray(type))
-        name = `[${requestFieldType2gql(type[0], false)}]`
+        name = `[${requestFieldType2gql(type[0], false, input)}]`
     else if (type === Number)
         name = `Float`
+    else if (type.prototype instanceof BaseEntity) 
+        name = `${upperFirst(camelCase(type.name))}${input ? 'Input' : ''}`
     else
         name = pascalCase(type.name)
 
@@ -20,7 +22,7 @@ function usecaseRequest2gql(useCase, presence) {
     const output = []
     for (const field of fields) {
         const type = useCase.requestSchema[field]
-        let name = requestFieldType2gql(type, presence)
+        let name = requestFieldType2gql(type, presence, true)
         output.push(`    ${field}: ${name}`)
 
     }
@@ -28,7 +30,7 @@ function usecaseRequest2gql(useCase, presence) {
 }
 
 function usecaseResponse2gql(useCase, presence) {
-    let name = requestFieldType2gql(useCase.responseSchema, presence)
+    let name = requestFieldType2gql(useCase.responseSchema, presence, false)
     return name
 }
 
