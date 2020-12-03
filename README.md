@@ -1,10 +1,10 @@
 # herbs2gql
 
-herbs2gql creates GraphQL [apollo](https://www.apollographql.com/) types based on herbs entities (gotu) and herbs usecase (buchu)
+herbs2gql creates GraphQL [apollo](https://www.apollographql.com/) types based on herbs entities ([gotu](https://github.com/herbsjs/gotu)) and herbs usecase ([buchu](https://github.com/herbsjs/buchu))
 
 ### Installing
 
-$ npm install herbs2gql
+    $ npm install herbs2gql
 
 ### Using
 
