@@ -1,6 +1,6 @@
 # herbs2gql
 
-herbs2gql creates graphql [apollo](https://www.apollographql.com/) types based on herbs entities (gotu) and herbs usecase (buchu)
+herbs2gql creates GraphQL [apollo](https://www.apollographql.com/) types based on herbs entities (gotu) and herbs usecase (buchu)
 
 ### Installing
 
@@ -8,11 +8,13 @@ $ npm install herbs2gql
 
 ### Using
 
-All methods returns a string in GraphQl format representing the type based.
+All methods returns a string in GraphQL format representing the type based.
 
-To convert a herbs entity to GraphQl Type:
+#### GraphQL Type
 
-```
+To convert a Herbs Entity to GraphQL Type:
+
+```javascript
 const entity = entity('User', {
     id: field(String),
     name: field(String),
@@ -24,9 +26,11 @@ const entity = entity('User', {
 const gql = entity2type(entity)
 ```
 
-To convert a herbs entity to GraphQl Input:
+#### GraphQL Input
 
-```
+To convert a Herbs Entity to GraphQL Input:
+
+```javascript
 const entity = entity('UserFilter', {    
     name: field(String),    
     age: field(Number),    
@@ -35,9 +39,11 @@ const entity = entity('UserFilter', {
 const gql = entity2input(entity)
 ```
 
-To convert a usecase to GraphQl Query:
+#### GraphQL Query
 
-```
+To convert a Herbs Use Case to GraphQL Query:
+
+```javascript
 const usecase = usecase('Get User', {
     request: {
         id: Number,
@@ -50,9 +56,11 @@ const usecase = usecase('Get User', {
 const gql = usecase2query(usecase)
 ```
 
-To convert a usecase to GraphQL Mutation:
+#### GraphQL Mutation
 
-```
+To convert a Herbs Use Case to GraphQL Mutation:
+
+```javascript
 const usecase = usecase('Update User', {
     request: {
         id: Number,
@@ -67,9 +75,11 @@ const usecase = usecase('Update User', {
 const gql = usecase2mutation(usecase)
 ```
 
-To convert a usecase to GraphQL Subscription:
+#### GraphQL Subscription
 
-```
+To convert a Herbs Use Case to GraphQL Subscription:
+
+```javascript
 const usecase = usecase('New User Notification', {
     request: {
         id: Number,        
@@ -80,6 +90,8 @@ const usecase = usecase('New User Notification', {
 
 const gql = usecase2mutation(usecase)
 ```
+
+#### Example
 
 Additionally you can view a simple demo application of this library in [todolist-on-herbs](https://github.com/herbsjs/todolist-on-herbs).
 
