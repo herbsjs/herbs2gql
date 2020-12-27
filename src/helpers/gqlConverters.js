@@ -23,10 +23,10 @@ function usecaseRequest2gql(useCase, presence) {
     for (const field of fields) {
         const type = useCase.requestSchema[field]
         let name = requestFieldType2gql(type, presence, true)
-        output.push(`    ${field}: ${name}`)
+        output.push(`${field}: ${name}`)
 
     }
-    return output.join(`,\n`)
+    return output.join(`, `)
 }
 
 function usecaseResponse2gql(useCase, presence) {
@@ -63,7 +63,7 @@ function entityField2gql(entity) {
 
         let typeOptions = fieldOptions2gpq(options)
 
-        gql += `    ${field}: ${name}${typeOptions}\n`
+        gql += `${field}: ${name}${typeOptions}\n`
     }
     return gql
 }

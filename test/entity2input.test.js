@@ -7,7 +7,7 @@ describe("Entity 2GQL Input", () => {
   context('when entity is valid', () => {
     it("should convert a entity to input", async () => {
       // given
-      const givenAnInput = entity("GQL", {
+      const givenAnInput = entity("An Entity", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -22,7 +22,7 @@ describe("Entity 2GQL Input", () => {
         booleanArrayField: field([Boolean]),
         dateField: field(Date),
         dateArrayField: field([Date]),
-        customEntityFunction: function(){}        
+        customEntityFunction: function () { }
       })
 
       // when
@@ -31,17 +31,17 @@ describe("Entity 2GQL Input", () => {
       // then
       assert.deepStrictEqual(
         gql,
-        `input GqlInput {
-    stringField: String
-    stringArrayField: [String]
-    numberField: Float
-    numberArrayField: [Float]
-    stringWithPresence: String!
-    stringArrayWithPresence: [String]!
-    booleanField: Boolean
-    booleanArrayField: [Boolean]
-    dateField: Date
-    dateArrayField: [Date]
+        `input AnEntityInput {
+stringField: String
+stringArrayField: [String]
+numberField: Float
+numberArrayField: [Float]
+stringWithPresence: String!
+stringArrayWithPresence: [String]!
+booleanField: Boolean
+booleanArrayField: [Boolean]
+dateField: Date
+dateArrayField: [Date]
 }`
       )
     })
@@ -72,16 +72,16 @@ describe("Entity 2GQL Input", () => {
       assert.deepStrictEqual(
         gql,
         `input ChieldGqlInput {
-    stringField: String
-    stringArrayField: [String]
-    numberField: Float
-    numberArrayField: [Float]
-    stringWithPresence: String!
-    stringArrayWithPresence: [String]!
-    booleanField: Boolean
-    booleanArrayField: [Boolean]
-    dateField: Date
-    dateArrayField: [Date]
+stringField: String
+stringArrayField: [String]
+numberField: Float
+numberArrayField: [Float]
+stringWithPresence: String!
+stringArrayWithPresence: [String]!
+booleanField: Boolean
+booleanArrayField: [Boolean]
+dateField: Date
+dateArrayField: [Date]
 }`
       )
     })

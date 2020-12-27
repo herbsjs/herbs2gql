@@ -13,14 +13,14 @@ describe('UseCase 2GQL Query', () => {
             const givenAnUseCase = usecase('UseCaseTest', {
                 response: Boolean
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
-            assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest : Boolean\n}`
-            )
+            assert.deepStrictEqual(gql, `extend type Query { useCaseTest : Boolean }`)
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
 
     })
@@ -38,14 +38,16 @@ describe('UseCase 2GQL Query', () => {
 
                 response: Boolean
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
+                `extend type Query { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : Boolean }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
     })
 
@@ -62,14 +64,16 @@ describe('UseCase 2GQL Query', () => {
 
                 response: Boolean
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
+                `extend type Query { useCaseTest (stringField: [String], numberField: [Float], dateField: [Date], booleanField: [Boolean]) : Boolean }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with primitive request params types and array output to GQL', async () => {
@@ -84,14 +88,16 @@ describe('UseCase 2GQL Query', () => {
 
                 response: [Boolean]
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
+                `extend type Query { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : [Boolean] }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
     })
 
@@ -108,14 +114,16 @@ describe('UseCase 2GQL Query', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User\n}`
+                `extend type Query { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : User }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with primitive request params types and gotu array entity output to GQL', async () => {
@@ -130,21 +138,24 @@ describe('UseCase 2GQL Query', () => {
 
                 response: [User]
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
+                `extend type Query { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : [User] }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
+
         })
 
         it('should convert a usecase with entity types and entity array on request params types and gotu array entity output to GQL', async () => {
             // given
             const GivenAnEntity = entity("Entity", {
                 numberField: field(Number),
-                customEntityFunction: function(){}        
+                customEntityFunction: function () { }
             })
 
             const givenAnUseCase = usecase('UseCaseTest', {
@@ -159,16 +170,18 @@ describe('UseCase 2GQL Query', () => {
 
                 response: [User]
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase)
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean,\n    entityField: EntityInput,\n    entityFieldArray: [EntityInput]) : [User]\n}`
+                `extend type Query { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean, entityField: EntityInput, entityFieldArray: [EntityInput]) : [User] }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
-        
+
     })
 
     context('when schema is required data', () => {
@@ -184,16 +197,19 @@ describe('UseCase 2GQL Query', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc, {
                 presenceOnRequest: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User\n}`
+                `extend type Query { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : User }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
+
         })
 
         it('should convert a usecase with request params types and not nullable gotu entity output to GQL', async () => {
@@ -208,16 +224,18 @@ describe('UseCase 2GQL Query', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc, {
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User!\n}`
+                `extend type Query { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : User! }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with not nullable request params types and not nullable gotu entity output to GQL', async () => {
@@ -232,17 +250,19 @@ describe('UseCase 2GQL Query', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc, {
                 presenceOnRequest: true,
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User!\n}`
+                `extend type Query { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : User! }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with not nullable request params types and not nullable gotu array entity output to GQL', async () => {
@@ -257,17 +277,19 @@ describe('UseCase 2GQL Query', () => {
 
                 response: [User]
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2query(givenAnUseCase, {
+            const [gql, resolver] = usecase2query(givenAnUseCase, resolverFunc, {
                 presenceOnRequest: true,
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Query {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : [User]!\n}`
+                `extend type Query { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : [User]! }`
             )
+            assert.deepStrictEqual(resolver, { Query: { useCaseTest: resolverFunc } })
         })
     })
 
@@ -287,7 +309,7 @@ describe('UseCase 2GQL Query', () => {
             })
 
             // then
-            assert.throws(() => usecase2query(givenAnUseCase), {
+            assert.throws(() => usecase2query(givenAnUseCase, null), {
                 invalidArgs: {
                     useCaseName: [{ cantBeEmpty: true }]
                 }
@@ -306,7 +328,7 @@ describe('UseCase 2GQL Query', () => {
             })
 
             // then
-            assert.throws(() => usecase2query(givenAnUseCase), {
+            assert.throws(() => usecase2query(givenAnUseCase, null), {
                 invalidArgs: { response: [{ cantBeEmpty: true }] }
             })
         })

@@ -1,6 +1,6 @@
 # herbs2gql
 
-herbs2gql creates GraphQL [apollo](https://www.apollographql.com/) types based on herbs entities ([gotu](https://github.com/herbsjs/gotu)) and herbs usecase ([buchu](https://github.com/herbsjs/buchu))
+herbs2gql creates GraphQL types based on herbs entities ([gotu](https://github.com/herbsjs/gotu)) and usecases ([buchu](https://github.com/herbsjs/buchu)), based on [Apollo](https://www.apollographql.com/) GraphQL.
 
 ### Installing
 
@@ -8,7 +8,7 @@ herbs2gql creates GraphQL [apollo](https://www.apollographql.com/) types based o
 
 ### Using
 
-All methods returns a string in GraphQL format representing the type based.
+All methods returns a string in GraphQL format representing the type based ([gql](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#gql)) and a [resolver](https://www.apollographql.com/docs/apollo-server/data/resolvers/) (when expected).
 
 #### GraphQL Type
 
@@ -53,7 +53,9 @@ const usecase = usecase('Get User', {
     response: User
 })
 
-const gql = usecase2query(usecase)
+const resolverFunc = (parent, args, context, info) => { }
+
+const [gql, resolver] = usecase2query(usecase, resolverFunc)
 ```
 
 #### GraphQL Mutation
@@ -72,7 +74,9 @@ const usecase = usecase('Update User', {
     response: User
 })
 
-const gql = usecase2mutation(usecase)
+const resolverFunc = (parent, args, context, info) => { }
+
+const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 ```
 
 #### GraphQL Subscription
@@ -88,7 +92,9 @@ const usecase = usecase('New User Notification', {
     response: UserMessage
 })
 
-const gql = usecase2mutation(usecase)
+const resolverFunc = () => { }
+
+const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
 ```
 
 #### Example

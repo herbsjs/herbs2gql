@@ -11,10 +11,7 @@ function entity2input(entity) {
     throw error
   }
 
-  let gql = ""
-  gql += `input ${upperFirst(camelCase(entity.name))}Input {\n`
-  gql += entityField2gql(entity)
-  gql += "}"
+  let gql = `input ${upperFirst(camelCase(entity.name))}Input {\n${entityField2gql(entity)}}`
   return gql
 }
 

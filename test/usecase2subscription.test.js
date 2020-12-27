@@ -13,14 +13,15 @@ describe('UseCase 2GQL Subscription', () => {
             const givenAnUseCase = usecase('UseCaseTest', {
                 response: Boolean
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase)
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc)
 
             // then
-            assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest : Boolean\n}`
-            )
+            assert.deepStrictEqual(gql, `extend type Subscription { useCaseTest : Boolean }`)
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
+
         })
 
     })
@@ -38,14 +39,16 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: Boolean
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase,)
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : Boolean\n}`
+                `extend type Subscription { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : Boolean }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
     })
 
@@ -62,14 +65,16 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: Boolean
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase)
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: [String],\n    numberField: [Float],\n    dateField: [Date],\n    booleanField: [Boolean]) : Boolean\n}`
+                `extend type Subscription { useCaseTest (stringField: [String], numberField: [Float], dateField: [Date], booleanField: [Boolean]) : Boolean }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with primitive request params types and array output to GQL', async () => {
@@ -84,14 +89,16 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: [Boolean]
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase)
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [Boolean]\n}`
+                `extend type Subscription { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : [Boolean] }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
     })
 
@@ -108,14 +115,16 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase)
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User\n}`
+                `extend type Subscription { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : User }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with primitive request params types and gotu array entity output to GQL', async () => {
@@ -130,14 +139,16 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: [User]
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase)
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc)
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : [User]\n}`
+                `extend type Subscription { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : [User] }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
     })
 
@@ -154,16 +165,18 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase, {
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc, {
                 presenceOnRequest: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User\n}`
+                `extend type Subscription { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : User }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with request params types and not nullable gotu entity output to GQL', async () => {
@@ -178,16 +191,18 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase, {
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc, {
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String,\n    numberField: Float,\n    dateField: Date,\n    booleanField: Boolean) : User!\n}`
+                `extend type Subscription { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : User! }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with not nullable request params types and not nullable gotu entity output to GQL', async () => {
@@ -202,24 +217,26 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+            const resolverFunc = (parent, args, context, info) => { }
 
             // when
-            const gql = usecase2subscription(givenAnUseCase, {
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc, {
                 presenceOnRequest: true,
                 presenceOnResponse: true
             })
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!) : User!\n}`
+                `extend type Subscription { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : User! }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
 
         it('should convert a usecase with not nullable, entity types and entity array on request params types and not nullable gotu array entity output to GQL', async () => {
             // given
             const GivenAnEntity = entity("Entity", {
                 numberField: field(Number),
-                customEntityFunction: function(){}        
+                customEntityFunction: function () { }
             })
 
             const givenAnUseCase = usecase('UseCaseTest', {
@@ -231,20 +248,22 @@ describe('UseCase 2GQL Subscription', () => {
                     entityField: GivenAnEntity,
                     entityFieldArray: [GivenAnEntity]
                 },
-    
+
                 response: [User]
             })
-    
+            const resolverFunc = (parent, args, context, info) => { }
+
             // when
-            const gql = usecase2subscription(givenAnUseCase, {
+            const [gql, resolver] = usecase2subscription(givenAnUseCase, resolverFunc, {
                 presenceOnRequest: true,
                 presenceOnResponse: true
             })
-    
+
             // then
             assert.deepStrictEqual(gql,
-                `extend type Subscription {\n    useCaseTest (    stringField: String!,\n    numberField: Float!,\n    dateField: Date!,\n    booleanField: Boolean!,\n    entityField: EntityInput!,\n    entityFieldArray: [EntityInput]!) : [User]!\n}`
+                `extend type Subscription { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!, entityField: EntityInput!, entityFieldArray: [EntityInput]!) : [User]! }`
             )
+            assert.deepStrictEqual(resolver, { Subscription: { useCaseTest: resolverFunc } })
         })
     })
 

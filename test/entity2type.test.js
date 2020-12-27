@@ -31,16 +31,16 @@ describe("Entity 2GQL Type", () => {
       assert.deepStrictEqual(
         gql,
         `type Entity {
-    stringField: String
-    stringArrayField: [String]
-    numberField: Float
-    numberArrayField: [Float]
-    stringWithPresence: String!
-    stringArrayWithPresence: [String]!
-    booleanField: Boolean
-    booleanArrayField: [Boolean]
-    dateField: Date
-    dateArrayField: [Date]
+stringField: String
+stringArrayField: [String]
+numberField: Float
+numberArrayField: [Float]
+stringWithPresence: String!
+stringArrayWithPresence: [String]!
+booleanField: Boolean
+booleanArrayField: [Boolean]
+dateField: Date
+dateArrayField: [Date]
 }`
       )
     })
@@ -71,16 +71,16 @@ describe("Entity 2GQL Type", () => {
       assert.deepStrictEqual(
         gql,
         `type ChieldEntityGql {
-    stringField: String
-    stringArrayField: [String]
-    numberField: Float
-    numberArrayField: [Float]
-    stringWithPresence: String!
-    stringArrayWithPresence: [String]!
-    booleanField: Boolean
-    booleanArrayField: [Boolean]
-    dateField: Date
-    dateArrayField: [Date]
+stringField: String
+stringArrayField: [String]
+numberField: Float
+numberArrayField: [Float]
+stringWithPresence: String!
+stringArrayWithPresence: [String]!
+booleanField: Boolean
+booleanArrayField: [Boolean]
+dateField: Date
+dateArrayField: [Date]
 }`
       )
     })
@@ -105,10 +105,10 @@ describe("Entity 2GQL Type", () => {
       assert.deepStrictEqual(
         gql,
         `type EntityOne {
-    numberField: Float
+numberField: Float
 }
       type EntityTwo {
-    entityField: EntityOne
+entityField: EntityOne
 }`
       )
     })

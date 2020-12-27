@@ -22,23 +22,6 @@
                 "<node_internals>/**/*.js"
             ]
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "DB Tests",
-            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-            "args": [
-                "--timeout",
-                "999999",
-                "--colors",
-                "--recursive",
-                "${workspaceFolder}/testdb"
-            ],
-            "internalConsoleOptions": "openOnSessionStart",
-            "skipFiles": [
-                "${workspaceFolder}/node_modules/**/*.js",
-                "<node_internals>/**/*.js"
-            ]
-        }
+        
     ]
 }
