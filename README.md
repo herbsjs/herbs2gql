@@ -70,7 +70,7 @@ If you put custom name or do not want camelcase:
 const options = { camelCase: false, customName: 'Custom Name' }
 
 //or Ignore CamelCase
-const options = { camelCase: false, customName: 'Custom Name' }
+const options = { camelCase: false }
 
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
@@ -103,7 +103,7 @@ If you put custom name or do not want camelcase:
 const options = { camelCase: false, customName: 'Custom Name' }
 
 //or Ignore CamelCase
-const options = { camelCase: false, customName: 'Custom Name' }
+const options = { camelCase: false }
 
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
@@ -133,7 +133,7 @@ If you put custom name or do not want camelcase:
 const options = { camelCase: false, customName: 'Custom Name' }
 
 //or Ignore CamelCase
-const options = { camelCase: false, customName: 'Custom Name' }
+const options = { camelCase: false }
 
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```

@@ -5,7 +5,7 @@ const { entity2input } = require("../src/herbs2gql")
 describe("Entity 2GQL Input", () => {
 
   context('when entity is valid', () => {
-    it("should convert a entity to input", async () => {
+    it("should convert an entity to input", async () => {
       // given
       const givenAnInput = entity("An Entity", {
         stringField: field(String),
@@ -46,7 +46,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert a entity to input with not camel case", async () => {
+    it("should convert an entity to input with not camel case", async () => {
       // given
       const givenAnInput = entity("An-Entity-", {
         stringField: field(String),
@@ -87,7 +87,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert a entity to input with customName", async () => {
+    it("should convert an entity to input with customName", async () => {
       // given
       const givenAnInput = entity("An Entity", {
         stringField: field(String),

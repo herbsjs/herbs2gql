@@ -4,7 +4,7 @@ const { entity2type } = require("../src/herbs2gql")
 describe("Entity 2GQL Type", () => {
 
   context('when entity is valid', () => {
-    it("should convert a entity to type", async () => {
+    it("should convert an entity to type", async () => {
       // given
       const givenAnEntity = entity("Entity", {
         stringField: field(String),
@@ -45,7 +45,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert a entity to type with not camel case", async () => {
+    it("should convert an entity to type with not camel case", async () => {
       // given
       const givenAnEntity = entity("entitY", {
         stringField: field(String),
@@ -86,7 +86,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert a entity to type with custom name", async () => {
+    it("should convert an entity to type with custom name", async () => {
       // given
       const givenAnEntity = entity("entitY", {
         stringField: field(String),
@@ -127,7 +127,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert a entity with long name to type", async () => {
+    it("should convert an entity with long name to type", async () => {
       // given
       const givenAnEntity = entity("Chield Entity GQL", {
         stringField: field(String),
@@ -167,7 +167,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert a entity to type when entity has entity references", async () => {
+    it("should convert an entity to type when entity has entity references", async () => {
       // given
       const givenAnFirstEntity = entity("Entity One", {
         numberField: field(Number),

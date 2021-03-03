@@ -14,16 +14,16 @@ function usecase2type(type, useCase, resolverFunc, options) {
         throw error
     }
 
-    let nameFormated
-    if (schema.customName !== '') nameFormated = schema.customName
-    else if (!schema.camelCase) nameFormated = useCase.description
-    else  nameFormated = camelCase(useCase.description)
+    let nameFormatted
+    if (schema.customName !== '') nameFormatted = schema.customName
+    else if (!schema.camelCase) nameFormatted = useCase.description
+    else  nameFormatted = camelCase(useCase.description)
 
     const usecaseParams = usecaseFieldToParams(useCase, schema)
     const usecaseResponse = usecaseResponse2gql(useCase, schema.presenceOnResponse)
     
-    const gql = `extend type ${type} { ${nameFormated} ${usecaseParams}: ${usecaseResponse} }`
-    const resolver = { [type]: { [nameFormated]: resolverFunc } }
+    const gql = `extend type ${type} { ${nameFormatted} ${usecaseParams}: ${usecaseResponse} }`
+    const resolver = { [type]: { [nameFormatted]: resolverFunc } }
 
     return [gql, resolver]
 }
