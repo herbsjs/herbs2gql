@@ -45,6 +45,88 @@ dateArrayField: [Date]
       )
     })
 
+    it("should convert a entity to type with not camel case", async () => {
+      // given
+      const givenAnEntity = entity("entitY", {
+        stringField: field(String),
+        stringArrayField: field([String]),
+        numberField: field(Number),
+        numberArrayField: field([Number]),
+        stringWithPresence: field(String, {
+          validation: { presence: true },
+        }),
+        stringArrayWithPresence: field([String], {
+          validation: { presence: true },
+        }),
+        booleanField: field(Boolean),
+        booleanArrayField: field([Boolean]),
+        dateField: field(Date),
+        dateArrayField: field([Date]),
+        customEntityFunction: function(){}        
+      })
+
+      // when
+      const gql = entity2type(givenAnEntity, false)
+
+      // then
+      assert.deepStrictEqual(
+        gql,
+        `type entitY {
+stringField: String
+stringArrayField: [String]
+numberField: Float
+numberArrayField: [Float]
+stringWithPresence: String!
+stringArrayWithPresence: [String]!
+booleanField: Boolean
+booleanArrayField: [Boolean]
+dateField: Date
+dateArrayField: [Date]
+}`
+      )
+    })
+
+    it("should convert a entity to type with custom name", async () => {
+      // given
+      const givenAnEntity = entity("entitY", {
+        stringField: field(String),
+        stringArrayField: field([String]),
+        numberField: field(Number),
+        numberArrayField: field([Number]),
+        stringWithPresence: field(String, {
+          validation: { presence: true },
+        }),
+        stringArrayWithPresence: field([String], {
+          validation: { presence: true },
+        }),
+        booleanField: field(Boolean),
+        booleanArrayField: field([Boolean]),
+        dateField: field(Date),
+        dateArrayField: field([Date]),
+        customEntityFunction: function(){}        
+      })
+
+      // when
+      const gql = entity2type(givenAnEntity, false, 'EntityCustom')
+
+      // then
+      assert.deepStrictEqual(
+        gql,
+        `type EntityCustom {
+stringField: String
+stringArrayField: [String]
+numberField: Float
+numberArrayField: [Float]
+stringWithPresence: String!
+stringArrayWithPresence: [String]!
+booleanField: Boolean
+booleanArrayField: [Boolean]
+dateField: Date
+dateArrayField: [Date]
+}`
+      )
+    })
+
     it("should convert a entity with long name to type", async () => {
       // given
       const givenAnEntity = entity("Chield Entity GQL", {

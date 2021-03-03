@@ -44,10 +44,9 @@ describe('UseCase 2 GQL Mutation', () => {
                 response: Boolean
             })
             const resolverFunc = (parent, args, context, info) => { }
-            const options = { camelCase: false }
-            const customName = 'Use_Case_Test' 
+            const options = { camelCase: false, customName: 'Use_Case_Test' }
             // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options, customName)
+            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 
             // then
             assert.deepStrictEqual(gql, `extend type Mutation { Use_Case_Test : Boolean }`)

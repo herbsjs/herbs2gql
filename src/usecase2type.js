@@ -3,7 +3,7 @@ const { schemaOptions, usecaseResponse2gql, usecaseFieldToParams } = require("./
 const { checker } = require('suma')
 const { useCaseValidator } = require('./herbsValidator')
 
-function usecase2type(type, useCase, resolverFunc, options, customName) {
+function usecase2type(type, useCase, resolverFunc, options) {
     const schema = schemaOptions(options)
     const validation = useCaseValidator(useCase)
     if (!checker.isEmpty(validation)) {
@@ -15,7 +15,7 @@ function usecase2type(type, useCase, resolverFunc, options, customName) {
     }
 
     let nameFormated
-    if (customName) nameFormated = customName
+    if (schema.customName !== '') nameFormated = schema.customName
     else if (!schema.camelCase) nameFormated = useCase.description
     else  nameFormated = camelCase(useCase.description)
 

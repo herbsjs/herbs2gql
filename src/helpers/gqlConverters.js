@@ -38,7 +38,8 @@ function schemaOptions(options) {
     return Object.assign({
         presenceOnRequest: false,
         presenceOnResponse: false,
-        camelCase: true
+        camelCase: true,
+        customName: '' 
     }, options || {})
 }
 

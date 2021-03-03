@@ -39,6 +39,12 @@ const entity = entity('UserFilter', {
 const gql = entity2input(entity)
 ```
 
+If you put custom name or do not want camelcase:
+```javascript
+ const gql = entity2type(givenAnEntity, false, 'EntityCustom')
+```
+
+
 #### GraphQL Query
 
 To convert a Herbs Use Case to GraphQL Query:
@@ -56,6 +62,17 @@ const usecase = usecase('Get User', {
 const resolverFunc = (parent, args, context, info) => { }
 
 const [gql, resolver] = usecase2query(usecase, resolverFunc)
+```
+If you put custom name or do not want camelcase:
+```javascript
+//Custom name
+//custom name is predominated
+const options = { camelCase: false, customName: 'Custom Name' }
+
+//or Ignore CamelCase
+const options = { camelCase: false, customName: 'Custom Name' }
+
+const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
 
 #### GraphQL Mutation
@@ -79,6 +96,18 @@ const resolverFunc = (parent, args, context, info) => { }
 const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 ```
 
+If you put custom name or do not want camelcase:
+```javascript
+//Custom name
+//custom name is predominated
+const options = { camelCase: false, customName: 'Custom Name' }
+
+//or Ignore CamelCase
+const options = { camelCase: false, customName: 'Custom Name' }
+
+const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
+```
+
 #### GraphQL Subscription
 
 To convert a Herbs Use Case to GraphQL Subscription:
@@ -95,6 +124,18 @@ const usecase = usecase('New User Notification', {
 const resolverFunc = () => { }
 
 const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
+```
+
+If you put custom name or do not want camelcase:
+```javascript
+//Custom name
+//custom name is predominated
+const options = { camelCase: false, customName: 'Custom Name' }
+
+//or Ignore CamelCase
+const options = { camelCase: false, customName: 'Custom Name' }
+
+const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
 
 #### Example
