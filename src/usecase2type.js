@@ -3,7 +3,7 @@ const { schemaOptions, usecaseResponse2gql, usecaseFieldToParams } = require("./
 const { checker } = require('suma')
 const { useCaseValidator } = require('./herbsValidator')
 
-function usecase2type(type, useCase, resolverFunc, options) {
+function usecase2type(type, useCase, resolverFunc, options, customName) {
     const schema = schemaOptions(options)
     const validation = useCaseValidator(useCase)
     if (!checker.isEmpty(validation)) {
@@ -14,12 +14,16 @@ function usecase2type(type, useCase, resolverFunc, options) {
         throw error
     }
 
-    const usecaseName = camelCase(useCase.description)
+    let nameFormated
+    if (customName) nameFormated = customName
+    else if (!schema.camelCase) nameFormated = useCase.description
+    else  nameFormated = camelCase(useCase.description)
+
     const usecaseParams = usecaseFieldToParams(useCase, schema)
     const usecaseResponse = usecaseResponse2gql(useCase, schema.presenceOnResponse)
     
-    const gql = `extend type ${type} { ${usecaseName} ${usecaseParams}: ${usecaseResponse} }`
-    const resolver = { [type]: { [usecaseName]: resolverFunc } }
+    const gql = `extend type ${type} { ${nameFormated} ${usecaseParams}: ${usecaseResponse} }`
+    const resolver = { [type]: { [nameFormated]: resolverFunc } }
 
     return [gql, resolver]
 }

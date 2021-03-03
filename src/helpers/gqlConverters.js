@@ -37,7 +37,8 @@ function usecaseResponse2gql(useCase, presence) {
 function schemaOptions(options) {
     return Object.assign({
         presenceOnRequest: false,
-        presenceOnResponse: false
+        presenceOnResponse: false,
+        camelCase: true
     }, options || {})
 }
 
