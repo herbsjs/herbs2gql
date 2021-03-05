@@ -25,6 +25,17 @@ const entity = entity('User', {
 
 const gql = entity2type(entity)
 ```
+If you put custom name or custom name or convention:
+```javascript
+ // convention startCase / kebabCase / lowerCase / snakeCase / upperCase
+ const options = { convention: 'kebabCase' } 
+ // or
+ // custom name
+ const options = { customName: 'CustomName' } 
+ 
+ const gql = entity2type(entity, options)
+```
+
 
 #### GraphQL Input
 
@@ -39,9 +50,15 @@ const entity = entity('UserFilter', {
 const gql = entity2input(entity)
 ```
 
-If you put custom name or do not want camelcase:
+If you put custom name or custom name or convention:
 ```javascript
- const gql = entity2type(givenAnEntity, false, 'EntityCustom')
+ // convention startCase / kebabCase / lowerCase / snakeCase / upperCase
+ const options = { convention: 'kebabCase' } 
+ // or
+ // custom name
+ const options = { customName: 'CustomName' } 
+ 
+ const gql = entity2input(givenAnEntity, options)
 ```
 
 
@@ -63,14 +80,15 @@ const resolverFunc = (parent, args, context, info) => { }
 
 const [gql, resolver] = usecase2query(usecase, resolverFunc)
 ```
-If you put custom name or do not want camelcase:
+If you put custom name or custom name or convention:
 ```javascript
 //Custom name
 //custom name is predominated
-const options = { camelCase: false, customName: 'Custom Name' }
+ const options = { customName: 'CustomName' } 
 
-//or Ignore CamelCase
-const options = { camelCase: false }
+//or Ignore convention
+// convention types startCase / kebabCase / lowerCase / snakeCase / upperCase
+ const options = { convention: 'kebabCase' } 
 
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
@@ -100,10 +118,11 @@ If you put custom name or do not want camelcase:
 ```javascript
 //Custom name
 //custom name is predominated
-const options = { camelCase: false, customName: 'Custom Name' }
+ const options = { customName: 'CustomName' } 
 
-//or Ignore CamelCase
-const options = { camelCase: false }
+//or Ignore convention
+// convention types startCase / kebabCase / lowerCase / snakeCase / upperCase
+ const options = { convention: 'kebabCase' } 
 
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
@@ -130,10 +149,11 @@ If you put custom name or do not want camelcase:
 ```javascript
 //Custom name
 //custom name is predominated
-const options = { camelCase: false, customName: 'Custom Name' }
+ const options = { customName: 'CustomName' } 
 
-//or Ignore CamelCase
-const options = { camelCase: false }
+//or Ignore convention
+// convention types startCase / kebabCase / lowerCase / snakeCase / upperCase
+ const options = { convention: 'kebabCase' } 
 
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
