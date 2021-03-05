@@ -34,20 +34,10 @@ function usecaseResponse2gql(useCase, presence) {
     return name
 }
 
-const EnumConventions = Object.freeze({
-    kebabcase: stringCase.kebabCaseConvection,
-    snakecase: stringCase.snakeCaseConvection,
-    lowercase: stringCase.lowerCaseConvection,
-    startcase: stringCase.startCaseConvection,
-    uppercase: stringCase.upperCaseConvention
-})
-
 function schemaOptions(options) {
     return Object.assign({
         presenceOnRequest: false,
-        presenceOnResponse: false,
-        EnumConventions,
-        customName: '' 
+        presenceOnResponse: false
     }, options || {})
 }
 
@@ -100,6 +90,5 @@ module.exports = {
     usecaseFieldToParams,
     schemaOptions,
     entityFieldType2gql,
-    entityField2gql,
-    EnumConventions
+    entityField2gql
 }

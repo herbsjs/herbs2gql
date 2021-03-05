@@ -25,17 +25,6 @@ const entity = entity('User', {
 
 const gql = entity2type(entity)
 ```
-If you put custom name or custom name or convention:
-```javascript
- // convention startCase / kebabCase / lowerCase / snakeCase / upperCase
- const options = { convention: 'kebabCase' } 
- // or
- // custom name
- const options = { customName: 'CustomName' } 
- 
- const gql = entity2type(entity, options)
-```
-
 
 #### GraphQL Input
 
@@ -49,18 +38,6 @@ const entity = entity('UserFilter', {
 
 const gql = entity2input(entity)
 ```
-
-If you put custom name or custom name or convention:
-```javascript
- // convention startCase / kebabCase / lowerCase / snakeCase / upperCase
- const options = { convention: 'kebabCase' } 
- // or
- // custom name
- const options = { customName: 'CustomName' } 
- 
- const gql = entity2input(givenAnEntity, options)
-```
-
 
 #### GraphQL Query
 
@@ -79,18 +56,6 @@ const usecase = usecase('Get User', {
 const resolverFunc = (parent, args, context, info) => { }
 
 const [gql, resolver] = usecase2query(usecase, resolverFunc)
-```
-If you put custom name or custom name or convention:
-```javascript
-//Custom name
-//custom name is predominated
- const options = { customName: 'CustomName' } 
-
-//or Ignore convention
-// convention types startCase / kebabCase / lowerCase / snakeCase / upperCase
- const options = { convention: 'kebabCase' } 
-
-const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
 
 #### GraphQL Mutation
@@ -114,19 +79,6 @@ const resolverFunc = (parent, args, context, info) => { }
 const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 ```
 
-If you put custom name or do not want camelcase:
-```javascript
-//Custom name
-//custom name is predominated
- const options = { customName: 'CustomName' } 
-
-//or Ignore convention
-// convention types startCase / kebabCase / lowerCase / snakeCase / upperCase
- const options = { convention: 'kebabCase' } 
-
-const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
-```
-
 #### GraphQL Subscription
 
 To convert a Herbs Use Case to GraphQL Subscription:
@@ -145,16 +97,37 @@ const resolverFunc = () => { }
 const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
 ```
 
-If you put custom name or do not want camelcase:
+#### Custom Names or Conventions
+In Herbs it is possible to include personalized names for queries, mutations, inputs and types
+custom names are always prioritized
+
+#### Custom Names
+
 ```javascript
-//Custom name
-//custom name is predominated
- const options = { customName: 'CustomName' } 
+const options = { customName: 'An-Entity' }
 
-//or Ignore convention
-// convention types startCase / kebabCase / lowerCase / snakeCase / upperCase
- const options = { convention: 'kebabCase' } 
+// for entity2input
+const gql = entity2input(givenAnInput, options)
 
+// for entity2type
+const gql = entity2type(givenAnEntity, options)
+
+//for mutation, query or subscription example using mutation
+const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
+```
+
+#### Conventions
+At the convention, a function must be sent, it must return a text formatted according to the sended convention
+```javascript
+const options = { convention: (str) => `snake_case_returned` }
+
+// for entity2input
+const gql = entity2input(givenAnInput, options)
+
+// for entity2type
+const gql = entity2type(givenAnEntity, options)
+
+//for mutation, query or subscription example using mutation
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
 

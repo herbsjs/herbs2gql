@@ -1,9 +1,9 @@
-const { camelCase, upperFirst } = require('lodash')
-const { entityField2gql, EnumConventions } = require("./helpers/gqlConverters")
+const { entityField2gql } = require("./helpers/gqlConverters")
+const { defaultConvention } = require("./helpers/stringCase")
 const { checker } = require('suma')
 const { entityValidator } = require('./herbsValidator')
 
-function entity2input(entity, options = undefined) {
+function entity2input(entity, options = {}) {
   const validation = entityValidator(entity)
   if (!checker.isEmpty(validation)) {
     const error = Error('InvalidEntity')
@@ -11,12 +11,11 @@ function entity2input(entity, options = undefined) {
     throw error
   }
 
-  const convention  = EnumConventions[options?.convention]
+  const convention = options?.convention || defaultConvention
 
   let name
   if (options?.customName) name = options.customName
-  else if (convention) name = convention(entity.name)
-  else name = upperFirst(camelCase(entity.name))
+  else name = convention(entity.name)
 
   let gql = `input ${name}Input {\n${entityField2gql(entity)}}`
   return gql
