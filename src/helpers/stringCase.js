@@ -1,4 +1,9 @@
-const { camelCase, startCase, kebabCase, lowerCase, snakeCase, upperCase } = require("lodash")
+const camelCase = require("lodash/camelCase")
+const startCase = require("lodash/startCase")
+const kebabCase = require("lodash/kebabCase")
+const lowerCase = require("lodash/lowerCase")
+const snakeCase = require("lodash/snakeCase")
+const upperCase = require("lodash/upperCase")
 
 function pascalCase(str) {
     return startCase(camelCase(str)).replace(/ /g, '')
