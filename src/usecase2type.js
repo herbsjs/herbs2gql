@@ -14,9 +14,11 @@ function usecase2type(type, useCase, resolverFunc, options) {
         throw error
     }
 
+    const convention = schema.EnumConventions[options?.convention]
+
     let nameFormatted
     if (schema.customName !== '') nameFormatted = schema.customName
-    else if (!schema.camelCase) nameFormatted = useCase.description
+    else if (convention) nameFormatted = convention(useCase.description)
     else  nameFormatted = camelCase(useCase.description)
 
     const usecaseParams = usecaseFieldToParams(useCase, schema)
@@ -27,7 +29,6 @@ function usecase2type(type, useCase, resolverFunc, options) {
 
     return [gql, resolver]
 }
-
 
 module.exports = usecase2type
 

@@ -46,7 +46,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert an entity to input with not camel case", async () => {
+    it("should convert an entity to input with custom name", async () => {
       // given
       const givenAnInput = entity("An-Entity-", {
         stringField: field(String),
@@ -66,13 +66,14 @@ dateArrayField: [Date]
         customEntityFunction: function () { }
       })
 
+      const options = {customName: 'An-Entity'}
       // when
-      const gql = entity2input(givenAnInput, false)
+      const gql = entity2input(givenAnInput, options)
 
       // then
       assert.deepStrictEqual(
         gql,
-        `input An-Entity-Input {
+        `input An-EntityInput {
 stringField: String
 stringArrayField: [String]
 numberField: Float
@@ -87,7 +88,7 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert an entity to input with customName", async () => {
+    it("should convert an entity to input with convention", async () => {
       // given
       const givenAnInput = entity("An Entity", {
         stringField: field(String),
@@ -107,13 +108,15 @@ dateArrayField: [Date]
         customEntityFunction: function () { }
       })
 
+      const options = { convention: 'kebabcase' }
+
       // when
-      const gql = entity2input(givenAnInput, false, 'CustomName')
+      const gql = entity2input(givenAnInput, options)
 
       // then
       assert.deepStrictEqual(
         gql,
-        `input CustomNameInput {
+        `input an-entityInput {
 stringField: String
 stringArrayField: [String]
 numberField: Float

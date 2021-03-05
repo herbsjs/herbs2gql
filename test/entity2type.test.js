@@ -45,9 +45,9 @@ dateArrayField: [Date]
       )
     })
 
-    it("should convert an entity to type with not camel case", async () => {
+    it("should convert an entity to type with convntion", async () => {
       // given
-      const givenAnEntity = entity("entitY", {
+      const givenAnEntity = entity("EntityType", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -65,13 +65,15 @@ dateArrayField: [Date]
         customEntityFunction: function(){}        
       })
 
+      const options = { convention: 'snakecase' }
+
       // when
-      const gql = entity2type(givenAnEntity, false)
+      const gql = entity2type(givenAnEntity, options)
 
       // then
       assert.deepStrictEqual(
         gql,
-        `type entitY {
+        `type entity_type {
 stringField: String
 stringArrayField: [String]
 numberField: Float
@@ -88,7 +90,7 @@ dateArrayField: [Date]
 
     it("should convert an entity to type with custom name", async () => {
       // given
-      const givenAnEntity = entity("entitY", {
+      const givenAnEntity = entity("Entity", {
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -106,8 +108,9 @@ dateArrayField: [Date]
         customEntityFunction: function(){}        
       })
 
+      const options = { customName: 'EntityCustom' }
       // when
-      const gql = entity2type(givenAnEntity, false, 'EntityCustom')
+      const gql = entity2type(givenAnEntity, options)
 
       // then
       assert.deepStrictEqual(
