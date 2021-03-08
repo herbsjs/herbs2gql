@@ -97,6 +97,40 @@ const resolverFunc = () => { }
 const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
 ```
 
+#### Custom Names or Conventions
+In Herbs it is possible to include personalized names for queries, mutations, inputs and types
+custom names are always prioritized
+
+#### Custom Names
+
+```javascript
+const options = { inputName: 'An-Entity' }
+
+// for entity2input
+const gql = entity2input(givenAnInput, options)
+
+// for entity2type
+const gql = entity2type(givenAnEntity, options)
+
+//for mutation, query or subscription example using mutation
+const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
+```
+
+#### Conventions
+At the convention, a function must be sent, it must return a text formatted according to the sended convention
+```javascript
+const options = { convention: { inputNameRule: (str) => `snake_case_returned` }}
+
+// for entity2input
+const gql = entity2input(givenAnInput, options)
+
+// for entity2type
+const gql = entity2type(givenAnEntity, options)
+
+//for mutation, query or subscription example using mutation
+const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
+```
+
 #### Example
 
 Additionally you can view a simple demo application of this library in [todolist-on-herbs](https://github.com/herbsjs/todolist-on-herbs).

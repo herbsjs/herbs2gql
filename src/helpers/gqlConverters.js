@@ -1,7 +1,7 @@
 const { checker } = require('suma')
 const { camelCase, upperFirst } = require('lodash')
 const { BaseEntity } = require('gotu/src/baseEntity')
-const { pascalCase } = require('./stringCase')
+const stringCase = require('./stringCase')
 
 function requestFieldType2gql(type, presence, input) {
     let name
@@ -12,7 +12,7 @@ function requestFieldType2gql(type, presence, input) {
     else if (type.prototype instanceof BaseEntity) 
         name = `${upperFirst(camelCase(type.name))}${input ? 'Input' : ''}`
     else
-        name = pascalCase(type.name)
+        name = stringCase.pascalCase(type.name)
 
     return presence ? `${name}!` : name
 }

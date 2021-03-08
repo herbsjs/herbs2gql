@@ -1,9 +1,9 @@
-const { camelCase, upperFirst } = require('lodash')
 const { entityField2gql } = require("./helpers/gqlConverters")
+const { defaultConvention } = require("./helpers/stringCase")
 const { checker } = require('suma')
 const { entityValidator } = require('./herbsValidator')
 
-function entity2type(entity) {
+function entity2type(entity, options = {}) {
   const validation = entityValidator(entity)
   if (!checker.isEmpty(validation)) {
     const error = Error('InvalidEntity')
@@ -11,8 +11,14 @@ function entity2type(entity) {
     throw error
   }
 
+  const convention = options?.convention?.inputNameRule || defaultConvention
+
+  let name
+  if (options?.inputName) name = options.inputName
+  else name = convention(entity.name)
+
   let gql = ""
-  gql += `type ${upperFirst(camelCase(entity.name))} {\n`
+  gql += `type ${name} {\n`
   gql += entityField2gql(entity)
   gql += "}"
   return gql

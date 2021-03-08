@@ -23,6 +23,36 @@ describe('UseCase 2 GQL Mutation', () => {
             assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
         })
 
+        it('should convert a usecase without request and basic output to GQL with options convention startcase', async () => {
+            // given
+            const givenAnUseCase = usecase('usecasetest', {
+                response: Boolean
+            })
+            const resolverFunc = (parent, args, context, info) => { }
+            const options = { convention: { inputNameRule: (str) => `mutation-${str}` }}
+            // when
+            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
+
+            // then
+            assert.deepStrictEqual(gql, `extend type Mutation { mutation-usecasetest : Boolean }`)
+            assert.deepStrictEqual(resolver, { Mutation: { "mutation-usecasetest": resolverFunc } })
+        })
+
+        it('should convert a usecase without request and basic output to GQL with customName', async () => {
+            // given
+            const givenAnUseCase = usecase('UseCaseTest', {
+                response: Boolean
+            })
+            const resolverFunc = (parent, args, context, info) => { }
+            const options = { inputName: 'Use_Case_Test' }
+            // when
+            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
+
+            // then
+            assert.deepStrictEqual(gql, `extend type Mutation { Use_Case_Test : Boolean }`)
+            assert.deepStrictEqual(resolver, { Mutation: { Use_Case_Test: resolverFunc } })
+        })
+
     })
 
     context('when schema is simple data', () => {

@@ -1,7 +1,11 @@
-const { camelCase, startCase } = require("lodash")
+const { camelCase, startCase, upperFirst } = require("lodash")
 
 function pascalCase(str) {
     return startCase(camelCase(str)).replace(/ /g, '')
 }
 
-module.exports = { pascalCase }
+function defaultConvention(str) {
+    return upperFirst(camelCase(str))
+}
+
+module.exports = { pascalCase, defaultConvention }
