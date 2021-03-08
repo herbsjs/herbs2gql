@@ -14,10 +14,12 @@ function usecase2type(type, useCase, resolverFunc, options) {
         throw error
     }
 
-    const convention = options?.convention?.inputNameRule || camelCase
+    let convention = camelCase
+    if(options && options.convention && options.convention.inputNameRule) 
+        convention = options.convention.inputNameRule
 
     let nameFormatted
-    if (options?.inputName) nameFormatted = options.inputName
+    if (options && options.inputName) nameFormatted = options.inputName
     else  nameFormatted = convention(useCase.description)
 
     const usecaseParams = usecaseFieldToParams(useCase, schema)
@@ -30,5 +32,3 @@ function usecase2type(type, useCase, resolverFunc, options) {
 }
 
 module.exports = usecase2type
-
-
