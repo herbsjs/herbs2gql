@@ -11,10 +11,10 @@ function entity2input(entity, options = {}) {
     throw error
   }
 
-  const convention = options?.convention || defaultConvention
+  const convention = options?.convention?.inputNameRule || defaultConvention
 
   let name
-  if (options?.customName) name = options.customName
+  if (options?.inputName) name = options.inputName
   else name = convention(entity.name)
 
   let gql = `input ${name}Input {\n${entityField2gql(entity)}}`

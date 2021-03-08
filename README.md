@@ -104,7 +104,7 @@ custom names are always prioritized
 #### Custom Names
 
 ```javascript
-const options = { customName: 'An-Entity' }
+const options = { inputName: 'An-Entity' }
 
 // for entity2input
 const gql = entity2input(givenAnInput, options)
@@ -119,7 +119,7 @@ const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 #### Conventions
 At the convention, a function must be sent, it must return a text formatted according to the sended convention
 ```javascript
-const options = { convention: (str) => `snake_case_returned` }
+const options = { convention: { inputNameRule: (str) => `snake_case_returned` }}
 
 // for entity2input
 const gql = entity2input(givenAnInput, options)

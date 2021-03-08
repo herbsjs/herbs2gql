@@ -14,10 +14,10 @@ function usecase2type(type, useCase, resolverFunc, options) {
         throw error
     }
 
-    const convention = options?.convention || camelCase
+    const convention = options?.convention?.inputNameRule || camelCase
 
     let nameFormatted
-    if (schema.customName) nameFormatted = schema.customName
+    if (options?.inputName) nameFormatted = options.inputName
     else  nameFormatted = convention(useCase.description)
 
     const usecaseParams = usecaseFieldToParams(useCase, schema)

@@ -29,7 +29,7 @@ describe('UseCase 2 GQL Mutation', () => {
                 response: Boolean
             })
             const resolverFunc = (parent, args, context, info) => { }
-            const options = { convention: (str) => `mutation-${str}` }
+            const options = { convention: { inputNameRule: (str) => `mutation-${str}` }}
             // when
             const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 
@@ -44,7 +44,7 @@ describe('UseCase 2 GQL Mutation', () => {
                 response: Boolean
             })
             const resolverFunc = (parent, args, context, info) => { }
-            const options = { customName: 'Use_Case_Test' }
+            const options = { inputName: 'Use_Case_Test' }
             // when
             const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 

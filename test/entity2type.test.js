@@ -65,7 +65,7 @@ dateArrayField: [Date]
         customEntityFunction: function(){}        
       })
 
-      const options = { customName: 'EntityCustom' }
+      const options = { inputName: 'EntityCustom' }
       // when
       const gql = entity2type(givenAnEntity, options)
 
@@ -107,7 +107,7 @@ dateArrayField: [Date]
         customEntityFunction: function(){}        
       })
 
-      const options = { convention: (str) => `snake_case_${str}` }
+      const options = { convention: { inputNameRule: (str) => `snake_case_${str}`} }
       // when
       const gql = entity2type(givenAnEntity, options)
 
