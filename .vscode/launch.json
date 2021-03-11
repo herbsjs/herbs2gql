@@ -8,20 +8,16 @@
             "type": "node",
             "request": "launch",
             "name": "Core Tests",
-            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-            "args": [
-                "--timeout",
-                "999999",
-                "--colors",
-                "--recursive",
-                "${workspaceFolder}/test"
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "test"
             ],
-            "internalConsoleOptions": "openOnSessionStart",
+            "port": 9229,
             "skipFiles": [
                 "${workspaceFolder}/node_modules/**/*.js",
-                "<node_internals>/**/*.js"
+                "<node_internals>/**"
             ]
-        },
-        
+        }
     ]
 }

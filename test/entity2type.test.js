@@ -21,7 +21,7 @@ describe("Entity 2GQL Type", () => {
         booleanArrayField: field([Boolean]),
         dateField: field(Date),
         dateArrayField: field([Date]),
-        customEntityFunction: function(){}        
+        customEntityFunction: function () { }
       })
 
       // when
@@ -49,20 +49,6 @@ dateArrayField: [Date]
       // given
       const givenAnEntity = entity("Entity", {
         stringField: field(String),
-        stringArrayField: field([String]),
-        numberField: field(Number),
-        numberArrayField: field([Number]),
-        stringWithPresence: field(String, {
-          validation: { presence: true },
-        }),
-        stringArrayWithPresence: field([String], {
-          validation: { presence: true },
-        }),
-        booleanField: field(Boolean),
-        booleanArrayField: field([Boolean]),
-        dateField: field(Date),
-        dateArrayField: field([Date]),
-        customEntityFunction: function(){}        
       })
 
       const options = { inputName: 'EntityCustom' }
@@ -74,15 +60,6 @@ dateArrayField: [Date]
         gql,
         `type EntityCustom {
 stringField: String
-stringArrayField: [String]
-numberField: Float
-numberArrayField: [Float]
-stringWithPresence: String!
-stringArrayWithPresence: [String]!
-booleanField: Boolean
-booleanArrayField: [Boolean]
-dateField: Date
-dateArrayField: [Date]
 }`
       )
     })
@@ -91,23 +68,9 @@ dateArrayField: [Date]
       // given
       const givenAnEntity = entity("Entity", {
         stringField: field(String),
-        stringArrayField: field([String]),
-        numberField: field(Number),
-        numberArrayField: field([Number]),
-        stringWithPresence: field(String, {
-          validation: { presence: true },
-        }),
-        stringArrayWithPresence: field([String], {
-          validation: { presence: true },
-        }),
-        booleanField: field(Boolean),
-        booleanArrayField: field([Boolean]),
-        dateField: field(Date),
-        dateArrayField: field([Date]),
-        customEntityFunction: function(){}        
       })
 
-      const options = { convention: { inputNameRule: (str) => `snake_case_${str}`} }
+      const options = { convention: { inputNameRule: (str) => `snake_case_${str}` } }
       // when
       const gql = entity2type(givenAnEntity, options)
 
@@ -116,15 +79,6 @@ dateArrayField: [Date]
         gql,
         `type snake_case_Entity {
 stringField: String
-stringArrayField: [String]
-numberField: Float
-numberArrayField: [Float]
-stringWithPresence: String!
-stringArrayWithPresence: [String]!
-booleanField: Boolean
-booleanArrayField: [Boolean]
-dateField: Date
-dateArrayField: [Date]
 }`
       )
     })
@@ -173,12 +127,12 @@ dateArrayField: [Date]
       // given
       const givenAnFirstEntity = entity("Entity One", {
         numberField: field(Number),
-        customEntityFunction: function(){}        
+        customEntityFunction: function () { }
       })
 
-      const givenAnSecondEntity = entity("Entity Two", {        
+      const givenAnSecondEntity = entity("Entity Two", {
         entityField: field(givenAnFirstEntity),
-        customEntityFunction: function(){}        
+        customEntityFunction: function () { }
       })
 
       // when
