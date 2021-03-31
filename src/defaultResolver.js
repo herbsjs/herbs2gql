@@ -9,6 +9,7 @@ function args2request(args, useCase) {
 
 function defaultResolver(usecase) {
 
+    // eslint-disable-next-line no-unused-vars
     return async function resolver(parent, args, context, info) {
 
         /* Authorization */
