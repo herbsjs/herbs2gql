@@ -97,6 +97,51 @@ const resolverFunc = () => { }
 const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
 ```
 
+#### GraphQL Resolvers
+
+You can use Resolvers for your Mutations or Queries to simplify the mapping of the graphs.
+
+**`DefaultResolver`**
+
+```javascript
+const defaultResolver = require('../src/defaultResolver')
+
+const usecase = usecase('Update User', {
+    request: {
+        id: Number,
+        name: String,
+        age: Number,
+        active: Boolean
+    },
+
+    response: User
+})
+
+const [gql, resolver] = usecase2mutation(usecase, defaultResolver(usecase))
+```
+
+
+**`CustomResolver`**
+
+```javascript
+const defaultResolver = require('../src/defaultResolver')
+
+const usecase = usecase('Update User', {
+    request: {
+        id: Number,
+        name: String,
+        age: Number,
+        active: Boolean
+    },
+
+    response: User
+})
+
+const resolverFunc = (parent, args, context, info) => { }
+
+const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
+```
+
 #### Custom Names or Conventions
 In Herbs it is possible to include personalized names for queries, mutations, inputs and types
 custom names are always prioritized
