@@ -1,11 +1,5 @@
 const { UserInputError, ForbiddenError } = require('apollo-server-express')
-
-function args2request(args, useCase) {
-    const params = {}
-    const fields = Object.keys(useCase.requestSchema)
-    for (const field of fields) params[field] = args[field]
-    return params
-}
+const args2request = require('./args2request')
 
 function defaultResolver(usecase) {
 
