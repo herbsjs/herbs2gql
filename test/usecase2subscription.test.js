@@ -13,6 +13,8 @@ describe('UseCase 2GQL Subscription', () => {
             const givenAnUseCase = usecase('UseCaseTest', {
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -39,6 +41,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -65,6 +69,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -89,6 +95,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: [Boolean]
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -115,6 +123,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -139,6 +149,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: [User]
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -165,6 +177,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -191,6 +205,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -217,6 +233,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -251,6 +269,8 @@ describe('UseCase 2GQL Subscription', () => {
 
                 response: [User]
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when

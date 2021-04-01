@@ -13,6 +13,8 @@ describe('UseCase 2 GQL Mutation', () => {
             const givenAnUseCase = usecase('UseCaseTest', {
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -28,7 +30,10 @@ describe('UseCase 2 GQL Mutation', () => {
             const givenAnUseCase = usecase('usecasetest', {
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars            
             const resolverFunc = (parent, args, context, info) => { }
+
             const options = { convention: { inputNameRule: (str) => `mutation-${str}` }}
             // when
             const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
@@ -43,7 +48,10 @@ describe('UseCase 2 GQL Mutation', () => {
             const givenAnUseCase = usecase('UseCaseTest', {
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
+
             const options = { inputName: 'Use_Case_Test' }
             // when
             const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
@@ -68,6 +76,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -94,6 +104,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: Boolean
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -118,6 +130,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: [Boolean]
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -145,6 +159,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -177,6 +193,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: [User]
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -204,6 +222,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -231,6 +251,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -258,6 +280,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: User
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
@@ -286,6 +310,8 @@ describe('UseCase 2 GQL Mutation', () => {
 
                 response: [User]
             })
+
+            // eslint-disable-next-line no-unused-vars
             const resolverFunc = (parent, args, context, info) => { }
 
             // when
