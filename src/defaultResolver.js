@@ -6,21 +6,23 @@ function defaultResolver(usecase) {
     // eslint-disable-next-line no-unused-vars
     return async function resolver(parent, args, context, info) {
 
+        const uc = usecase()
+
         /* Authorization */
-        const hasAccess = usecase.authorize(context.user)
+        const hasAccess = uc.authorize(context.user)
         if (hasAccess === false) {
             // eslint-disable-next-line no-console
-            console.info(usecase.auditTrail)
+            console.info(uc.auditTrail)
             throw new ForbiddenError()
         }
 
         /* Execution */
-        const request = args2request(args, usecase)
-        const response = await usecase.run(request)
+        const request = args2request(args, uc)
+        const response = await uc.run(request)
 
         /* Audit */
         // eslint-disable-next-line no-console
-        console.info(usecase.auditTrail)
+        console.info(uc.auditTrail)
 
         /* Response */
         if (response.isErr) throw new UserInputError(null, { invalidArgs: response.err })

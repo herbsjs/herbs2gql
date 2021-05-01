@@ -114,7 +114,7 @@ const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
 ```javascript
 const { defaultResolver } = require('herbs2gql')
 ​
-const usecase = usecase('Update User', {
+const updateUser = (injection) => usecase('Update User', {
     request: {
         id: Number,
         name: String,
@@ -125,7 +125,7 @@ const usecase = usecase('Update User', {
     response: User
 })
 ​
-const [gql, resolver] = usecase2mutation(usecase, defaultResolver(usecase))
+const [gql, resolver] = usecase2mutation(updateUser(), defaultResolver(updateUser))
 ```
 ​
 In case you need to implement your own resolver:

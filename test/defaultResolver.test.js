@@ -13,7 +13,7 @@ describe('GraphQL - Default Resolver', () => {
             async run() { return Ok("result") }
         }
 
-        const resolver = defaultResolver(AUseCase)
+        const resolver = defaultResolver(() => AUseCase)
 
         // When
         const ret = await resolver(null, {}, { user: {} })
@@ -32,7 +32,7 @@ describe('GraphQL - Default Resolver', () => {
             async run() { return Err("error") }
         }
 
-        const resolver = defaultResolver(AUseCase)
+        const resolver = defaultResolver(() => AUseCase)
 
         await assert.rejects(
             // When
@@ -56,7 +56,7 @@ describe('GraphQL - Default Resolver', () => {
             authorize() { return false }
         }
 
-        const resolver = defaultResolver(AUseCase)
+        const resolver = defaultResolver(() => AUseCase)
 
         await assert.rejects(
             // When
