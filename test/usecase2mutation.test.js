@@ -365,7 +365,7 @@ describe('UseCase 2 GQL Mutation', () => {
 
             // then
             assert.throws(() => usecase2mutation(givenAnUseCase, null), {
-                invalidArgs: { response: [{ cantBeEmpty: true }] }
+                invalidArgs: { response: [{cantBeEmpty:true},{cantBeNull:true}] }
             })
         })
 

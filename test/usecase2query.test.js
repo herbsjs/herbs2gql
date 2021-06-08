@@ -351,7 +351,7 @@ describe('UseCase 2GQL Query', () => {
 
             // then
             assert.throws(() => usecase2query(givenAnUseCase, null), {
-                invalidArgs: { response: [{ cantBeEmpty: true }] }
+                invalidArgs: {response:[{cantBeEmpty:true},{cantBeNull:true}]}
             })
         })
 

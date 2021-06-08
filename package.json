@@ -38,13 +38,12 @@
   "dependencies": {
     "buchu": "^1.0.14",
     "gotu": "^1.0.21",
-   
     "lodash": "^4.17.21",
     "suma": "^1.0.10"
   },
   "devDependencies": {
-    "apollo-server": "^2.21.1",
-    "apollo-server-express": "^2.21.1",
+    "apollo-server": "^2.25.0",
+    "apollo-server-express": "^2.25.0",
     "babel-eslint": "^10.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.21.0",
@@ -53,7 +52,6 @@
     "eslint-plugin-prettier": "^3.3.1",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "graphql-upload": "^12.0.0",
     "mocha": "^8.3.1",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
