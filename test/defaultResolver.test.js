@@ -9,7 +9,7 @@ describe('GraphQL - Default Resolver', () => {
         const AUseCase = {
             requestSchema: { id: Number },
             responseSchema: Number,
-            authorize() { return true },
+            async authorize() { return true },
             async run() { return Ok("result") }
         }
 
@@ -28,7 +28,7 @@ describe('GraphQL - Default Resolver', () => {
         const AUseCase = {
             requestSchema: { id: Number },
             responseSchema: Number,
-            authorize() { return true },
+            async authorize() { return true },
             async run() { return Err("error") }
         }
 
@@ -53,7 +53,7 @@ describe('GraphQL - Default Resolver', () => {
         const AUseCase = {
             requestSchema: { id: Number },
             responseSchema: Number,
-            authorize() { return false }
+            async authorize() { return false }
         }
 
         const resolver = defaultResolver(() => AUseCase)
