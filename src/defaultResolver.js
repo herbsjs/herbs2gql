@@ -9,7 +9,7 @@ function defaultResolver(usecase) {
         const uc = usecase()
 
         /* Authorization */
-        const hasAccess = uc.authorize(context.user)
+        const hasAccess = await uc.authorize(context.user)
         if (hasAccess === false) {
             // eslint-disable-next-line no-console
             console.info(uc.auditTrail)

@@ -323,7 +323,7 @@ describe('UseCase 2GQL Subscription', () => {
 
             // then
             assert.throws(() => usecase2subscription(givenAnUseCase), {
-                invalidArgs: { response: [{ cantBeEmpty: true }] }
+                invalidArgs: { response: [{cantBeEmpty:true},{cantBeNull:true}] }
             })
         })
 
