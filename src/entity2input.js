@@ -1,6 +1,6 @@
 const { entityField2gql } = require("./helpers/gqlConverters")
 const { defaultConvention } = require("./helpers/stringCase")
-const { checker } = require('suma')
+const { checker } = require('@herbsjs/suma')
 const { entityValidator } = require('./herbsValidator')
 
 function entity2input(entity, options = {}) {

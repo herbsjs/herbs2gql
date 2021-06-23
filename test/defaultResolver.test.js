@@ -1,5 +1,5 @@
 const assert = require('assert')
-const { Ok, Err } = require('buchu')
+const { Ok, Err } = require('@herbsjs/buchu')
 const defaultResolver = require('../src/defaultResolver')
 
 describe('GraphQL - Default Resolver', () => {
