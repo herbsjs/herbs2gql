@@ -1,5 +1,5 @@
 const assert = require("assert")
-const { entity, field } = require("gotu")
+const { entity, field } = require("@herbsjs/gotu")
 const { entity2input } = require("../src/herbs2gql")
 
 describe("Entity 2GQL Input", () => {

@@ -160,3 +160,4 @@ public
 .editorconfig
 
 node_modules
+.vscode/settings.json

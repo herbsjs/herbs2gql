@@ -1,4 +1,4 @@
-const { validate, checker } = require('suma')
+const { validate, checker } = require('@herbsjs/suma')
 
 const useCaseValidator = (useCase) => {
     let output = {}

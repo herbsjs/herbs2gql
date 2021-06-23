@@ -1,6 +1,6 @@
-const { checker } = require('suma')
+const { checker } = require('@herbsjs/suma')
 const { camelCase, upperFirst } = require('lodash')
-const { BaseEntity } = require('gotu/src/baseEntity')
+const { BaseEntity } = require('@herbsjs/gotu/src/baseEntity')
 const stringCase = require('./stringCase')
 
 function requestFieldType2gql(type, presence, input) {

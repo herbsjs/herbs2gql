@@ -3,9 +3,10 @@
 herbs2gql creates GraphQL types based on herbs entities ([gotu](https://github.com/herbsjs/gotu)) and usecases ([buchu](https://github.com/herbsjs/buchu)), based on [Apollo](https://www.apollographql.com/) GraphQL.
 ​
 ### Installing
-​
-    $ npm install herbs2gql
-​
+​```
+    $ npm install @herbsjs/herbs2gql
+​```
+
 ### Using
 ​
 All methods returns a string in GraphQL format representing the type based ([gql](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#gql)) and a [resolver](https://www.apollographql.com/docs/apollo-server/data/resolvers/) (when expected).
@@ -15,7 +16,7 @@ All methods returns a string in GraphQL format representing the type based ([gql
 To convert a Herbs Entity to GraphQL Type:
 ​
 ```javascript
-const { entity2type } = require('herbs2gql')
+const { entity2type } = require('@herbsjs/herbs2gql')
 ​
 const entity = entity('User', {
     id: field(String),
@@ -33,7 +34,7 @@ const gql = entity2type(entity)
 To convert a Herbs Entity to GraphQL Input:
 ​
 ```javascript
-const { entity2input } = require('herbs2gql')
+const { entity2input } = require('@herbsjs/herbs2gql')
 ​
 const entity = entity('UserFilter', {    
     name: field(String),    
@@ -48,7 +49,7 @@ const gql = entity2input(entity)
 To convert a Herbs Use Case to GraphQL Query:
 ​
 ```javascript
-const { usecase2query } = require('herbs2gql')
+const { usecase2query } = require('@herbsjs/herbs2gql')
 ​
 const usecase = usecase('Get User', {
     request: {
@@ -69,7 +70,7 @@ const [gql, resolver] = usecase2query(usecase, resolverFunc)
 To convert a Herbs Use Case to GraphQL Mutation:
 ​
 ```javascript
-const { usecase2mutation } = require('herbs2gql')
+const { usecase2mutation } = require('@herbsjs/herbs2gql')
 ​
 const usecase = usecase('Update User', {
     request: {
@@ -92,7 +93,7 @@ const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 To convert a Herbs Use Case to GraphQL Subscription:
 ​
 ```javascript
-const { usecase2subscription } = require('herbs2gql')
+const { usecase2subscription } = require('@herbsjs/herbs2gql')
 ​
 const usecase = usecase('New User Notification', {
     request: {
@@ -112,7 +113,7 @@ const [gql, resolver] = usecase2subscription(usecase, resolverFunc)
 `herbs2gql` provides a generic resolver implementation for mutations and queries.
 ​
 ```javascript
-const { defaultResolver } = require('herbs2gql')
+const { defaultResolver } = require('@herbsjs/herbs2gql')
 ​
 const updateUser = (injection) => usecase('Update User', {
     request: {
