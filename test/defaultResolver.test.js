@@ -42,7 +42,7 @@ describe('GraphQL - Default Resolver', () => {
             // Then
             (err) => {
                 assert.strictEqual(err.name, 'UserInputError')
-                assert.strictEqual(err.invalidArgs, 'error')
+                assert.strictEqual(err.extensions.invalidArgs, 'error')
                 return true
             }
         )

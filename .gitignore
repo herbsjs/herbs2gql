@@ -34,7 +34,7 @@ build/Release
 
 # Dependency directories
 node_modules/
-jspm_packages/
+jspm_`s/
 
 # TypeScript v1 declaration files
 typings/
@@ -159,5 +159,6 @@ public
 .dynamodb/
 .editorconfig
 
-node_modules
+node_modules/
 .vscode/settings.json
+.DS_Store
