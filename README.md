@@ -185,6 +185,10 @@ const gql = entity2type(givenAnEntity, options)
 const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 ```
 ​
+#### Apollo Errors and Err
+
+Herbs2gql translates Herbs [Known Errors​](https://herbsjs.org/docs/usecase/result#known-errors) to Apollo Errors as described in the documentation.
+
 #### Example
 ​
 Additionally you can view a simple demo application of this library in [todolist-on-herbs](https://github.com/herbsjs/todolist-on-herbs).
