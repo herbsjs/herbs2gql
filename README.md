@@ -128,6 +128,39 @@ const updateUser = (injection) => usecase('Update User', {
 ​
 const [gql, resolver] = usecase2mutation(updateUser(), defaultResolver(updateUser))
 ```
+The default resolver accepts a second optional parameter called options. The options is an object with a property called `errorHandler`. So, you can provide a custom error handler function.
+
+```javascript
+const myCustomErrorHandler = (usecaseResponse) => {
+    // handle the errors on your own way
+}
+
+const options = {
+    errorHandler: myCustomErrorHandler
+}
+
+const [gql, resolver] = usecase2mutation(updateUser(), defaultResolver(updateUser, options))
+```
+
+Your custom error handler can also utilize the `defaultErrorHandler` as a fallback:
+
+```javascript
+const { defaultErrorHandler } = require('@herbsjs/herbs2gql')
+
+const myCustomErrorHandler = (usecaseResponse) => {
+    // handle the errors on your own way
+
+    // if the error does not need any specific treatment, so uses the herbs2gql default error handler
+    return defaultErrorHandler(usecaseResponse)
+}
+
+const options = {
+    errorHandler: myCustomErrorHandler
+}
+
+const [gql, resolver] = usecase2mutation(updateUser(), defaultResolver(updateUser, options))
+```
+
 ​
 In case you need to implement your own resolver:
 ​
