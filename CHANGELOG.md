@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/herbsjs/herbs2gql/compare/v2.0.1...v2.1.0) (2022-02-14)
+
+
+### Features
+
+* **defaultresolver:** adds support to custom error handler on defaultResolver ([4eaaee2](https://github.com/herbsjs/herbs2gql/commit/4eaaee2ebe80ceacd8793cb9344bb6b63ceeb328)), closes [#23](https://github.com/herbsjs/herbs2gql/issues/23)
+
 ## [2.0.1](https://github.com/herbsjs/herbs2gql/compare/v2.0.0...v2.0.1) (2022-01-15)
 
 
