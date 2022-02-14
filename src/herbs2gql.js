@@ -5,5 +5,6 @@ module.exports = {
     usecase2query: require('./usecase2query'),
     usecase2subscription: require('./usecase2subscription'),
     defaultResolver: require('./defaultResolver'),
-    args2request : require('./args2request'),
+    defaultErrorHandler: require('./defaultErrorHandler').defaultErrorHandler,
+    args2request: require('./args2request'),
 }

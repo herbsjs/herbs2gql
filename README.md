@@ -150,6 +150,62 @@ const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 ​
 Or you can use `herbs2gql` [`defaultResolver`](https://github.com/herbsjs/herbs2gql/blob/master/src/defaultResolver.js) implementation as a reference. 
 ​
+#### Error Handling
+
+`herbs2gql` deals with errors in the default resolver. It translates the usecase's errors into graphql errors:
+
+| Usecase Error            | Apollo Error   |
+|--------------------------|----------------|
+| Permission Denied        | ForbiddenError |
+| Not Found                | ApolloError    |
+| Already Exists           | ApolloError    |
+| Unknown                  | ApolloError    |
+| Invalid Arguments        | UserInputError |
+| Invalid Entity           | UserInputError |
+| Any other kind of errors | UserInputError |
+
+However, it's behavior can be overridden in the `errorHandler` property of the options parameter:
+
+```javascript
+const { defaultResolver } = require('@herbsjs/herbs2gql')
+
+const myCustomErrorHandler = (usecaseResponse) => {
+    // handle the errors on your own way
+}
+
+const options = {
+    errorHandler: myCustomErrorHandler
+}
+
+const updateUser = usecase('Update User', {
+    // usecase implementation
+})
+
+const [gql, resolver] = usecase2mutation(updateUser(), defaultResolver(updateUser, options))
+```
+
+Your custom error handler can also utilize the `defaultErrorHandler` as a fallback:
+
+```javascript
+const { defaultResolver, defaultErrorHandler } = require('@herbsjs/herbs2gql')
+
+const myCustomErrorHandler = (usecaseResponse) => {
+    // handle the errors on your own way
+
+    // use the default error handler when there is no need of a specific treatment
+    return defaultErrorHandler(usecaseResponse)
+}
+
+const options = {
+    errorHandler: myCustomErrorHandler
+}
+
+const updateUser = usecase('Update User', {
+    // usecase implementation
+})
+
+const [gql, resolver] = usecase2mutation(updateUser(), defaultResolver(updateUser, options))
+```
 ​
 #### Custom Names or Conventions
 In Herbs it is possible to include personalized names for queries, mutations, inputs and types

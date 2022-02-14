@@ -1,10 +1,16 @@
-const { UserInputError, ForbiddenError, ApolloError } = require('apollo-server-express')
+const { ForbiddenError } = require('apollo-server-express')
+const { defaultErrorHandler } = require('./defaultErrorHandler')
 const args2request = require('./args2request')
 
-function defaultResolver(usecase) {
+const defaultOptions = {
+    errorHandler: defaultErrorHandler
+}
 
-    // eslint-disable-next-line no-unused-vars
-    return async function resolver(parent, args, context, info) {
+function defaultResolver(usecase, { errorHandler } = defaultOptions) {
+
+    const handleError = errorHandler ?? defaultErrorHandler
+
+    return async function resolver(_parent, args, context, _info) {
 
         const uc = usecase()
 
@@ -26,19 +32,7 @@ function defaultResolver(usecase) {
 
         /* Response */
         if (response.isErr) {
-            if (response.isPermissionDeniedError)
-                throw new ForbiddenError(response.err.message, { cause: response.err })
-
-            if (response.isInvalidArgumentsError ||
-                response.isInvalidEntityError)
-                throw new UserInputError(response.err.message, { cause: response.err })
-
-            if (response.isNotFoundError ||
-                response.isAlreadyExistsError ||
-                response.isUnknownError)
-                throw new ApolloError(response.err.message, response.err.code, { cause: response.err })
-
-            throw new UserInputError(null, { cause: response.err })
+            return await handleError(response)
         }
 
         return response.ok
