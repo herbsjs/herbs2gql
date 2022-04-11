@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/herbsjs/herbs2gql/compare/v2.1.0...v2.1.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* dependency update, mainly apollo, because it had security flaw ([7aa3ef1](https://github.com/herbsjs/herbs2gql/commit/7aa3ef1bb089e445ac53aa116f82b2307f02384f))
+
 # [2.1.0](https://github.com/herbsjs/herbs2gql/compare/v2.0.1...v2.1.0) (2022-02-14)
 
 
