@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/herbsjs/herbs2gql/compare/v2.1.2...v2.1.3) (2022-04-16)
+
+
+### Bug Fixes
+
+* **deps:** bump path-parse from 1.0.6 to 1.0.7 ([cd82352](https://github.com/herbsjs/herbs2gql/commit/cd82352f96a2acd59504a50efe6daeaccc13e042))
+
 ## [2.1.2](https://github.com/herbsjs/herbs2gql/compare/v2.1.1...v2.1.2) (2022-04-16)
 
 
