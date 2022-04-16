@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/herbsjs/herbs2gql/compare/v2.1.1...v2.1.2) (2022-04-16)
+
+
+### Bug Fixes
+
+* **deps:** bump y18n from 4.0.0 to 4.0.3 ([5499e99](https://github.com/herbsjs/herbs2gql/commit/5499e997249126a4638ec7bd2f3168108e19c37c))
+
 ## [2.1.1](https://github.com/herbsjs/herbs2gql/compare/v2.1.0...v2.1.1) (2022-04-11)
 
 
