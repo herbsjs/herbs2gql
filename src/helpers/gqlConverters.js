@@ -46,8 +46,8 @@ function entityFieldType2gql(type, param) {
     if (Array.isArray(type)) name = `[${entityFieldType2gql(type[0])}]`
     else if (type === Number) name = `Float`
     else if (type.prototype instanceof BaseEntity) {
-        if(param=='type')  name = upperFirst(camelCase(type.name))
-        if(param=='input') name=`${upperFirst(camelCase(type.name))}Input`
+        if(param == 'type')  name = upperFirst(camelCase(type.name))
+        if(param == 'input') name = `${upperFirst(camelCase(type.name))}Input`
     }
     else name = type.name
     return name
