@@ -46,6 +46,37 @@ dateArrayField: [Date]
       )
     })
 
+     it("should convert an entity to input when entity has entity references", async () => {
+      // given
+      const givenAnFirstEntity = entity("Entity One", {
+        numberField: field(Number),
+        nome: field(String)
+        // customEntityFunction: function () { }
+      })
+
+      const givenAnSecondEntity = entity("Entity Two", {
+        entityField: field(givenAnFirstEntity),
+        // customEntityFunction: function () { }
+      })
+
+      // when
+      const gql = `${entity2input(givenAnFirstEntity)}
+      ${entity2input(givenAnSecondEntity)}`
+      
+
+      // then
+      assert.deepStrictEqual(
+        gql,
+        `input EntityOneInput {
+numberField: Float
+nome: String
+}
+      input EntityTwoInput {
+entityField: EntityOneInput
+}`
+      )
+    }) 
+  
 
     it("should convert an entity to input with convention", async () => {
       // given

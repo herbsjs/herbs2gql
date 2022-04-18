@@ -21,7 +21,7 @@ function entity2type(entity, options = {}) {
 
   let gql = ""
   gql += `type ${name} {\n`
-  gql += entityField2gql(entity)
+  gql += entityField2gql(entity, 'type')
   gql += "}"
   return gql
 }
