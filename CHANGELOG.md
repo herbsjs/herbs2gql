@@ -1,3 +1,24 @@
+## [2.1.3](https://github.com/herbsjs/herbs2gql/compare/v2.1.2...v2.1.3) (2022-04-16)
+
+
+### Bug Fixes
+
+* **deps:** bump path-parse from 1.0.6 to 1.0.7 ([cd82352](https://github.com/herbsjs/herbs2gql/commit/cd82352f96a2acd59504a50efe6daeaccc13e042))
+
+## [2.1.2](https://github.com/herbsjs/herbs2gql/compare/v2.1.1...v2.1.2) (2022-04-16)
+
+
+### Bug Fixes
+
+* **deps:** bump y18n from 4.0.0 to 4.0.3 ([5499e99](https://github.com/herbsjs/herbs2gql/commit/5499e997249126a4638ec7bd2f3168108e19c37c))
+
+## [2.1.1](https://github.com/herbsjs/herbs2gql/compare/v2.1.0...v2.1.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* dependency update, mainly apollo, because it had security flaw ([7aa3ef1](https://github.com/herbsjs/herbs2gql/commit/7aa3ef1bb089e445ac53aa116f82b2307f02384f))
+
 # [2.1.0](https://github.com/herbsjs/herbs2gql/compare/v2.0.1...v2.1.0) (2022-02-14)
 
 
