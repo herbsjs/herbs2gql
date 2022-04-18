@@ -50,13 +50,12 @@ dateArrayField: [Date]
       // given
       const givenAnFirstEntity = entity("Entity One", {
         numberField: field(Number),
-        nome: field(String)
-        // customEntityFunction: function () { }
+        customEntityFunction: function () { }
       })
 
       const givenAnSecondEntity = entity("Entity Two", {
         entityField: field(givenAnFirstEntity),
-        // customEntityFunction: function () { }
+        customEntityFunction: function () { }
       })
 
       // when
@@ -69,7 +68,6 @@ dateArrayField: [Date]
         gql,
         `input EntityOneInput {
 numberField: Float
-nome: String
 }
       input EntityTwoInput {
 entityField: EntityOneInput
