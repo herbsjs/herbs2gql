@@ -19,7 +19,7 @@ function entity2input(entity, options = {}) {
   if (options && options.inputName) name = options.inputName
   else name = convention(entity.name)
 
-  let gql = `input ${name}Input {\n${entityField2gql(entity)}}`
+  let gql = `input ${name}Input {\n${entityField2gql(entity, 'input')}}`
   return gql
 }
 
