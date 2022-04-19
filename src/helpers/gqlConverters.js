@@ -41,16 +41,19 @@ function schemaOptions(options) {
     }, options || {})
 }
 
-function entityFieldType2gql(type) {
+function entityFieldType2gql(type, param) {
     let name
     if (Array.isArray(type)) name = `[${entityFieldType2gql(type[0])}]`
     else if (type === Number) name = `Float`
-    else if (type.prototype instanceof BaseEntity) name = upperFirst(camelCase(type.name))
+    else if (type.prototype instanceof BaseEntity) {
+        if(param == 'type')  name = upperFirst(camelCase(type.name))
+        if(param == 'input') name = `${upperFirst(camelCase(type.name))}Input`
+    }
     else name = type.name
     return name
 }
 
-function entityField2gql(entity) {
+function entityField2gql(entity, param) {
     const fields = Object.keys(entity.prototype.meta.schema)    
     let gql = ""
     for (const field of fields) {
@@ -59,7 +62,7 @@ function entityField2gql(entity) {
 
         const { type, options } = entity.prototype.meta.schema[field]
 
-        let name = entityFieldType2gql(type)
+        let name = entityFieldType2gql(type, param)
 
         let typeOptions = fieldOptions2gpq(options)
 
