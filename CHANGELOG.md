@@ -1,3 +1,10 @@
+## [2.1.5](https://github.com/herbsjs/herbs2gql/compare/v2.1.4...v2.1.5) (2022-04-20)
+
+
+### Bug Fixes
+
+* **deps:** bump ansi-regex from 3.0.0 to 3.0.1 ([64a07a6](https://github.com/herbsjs/herbs2gql/commit/64a07a6a8953cd2e18a42d0a3366fa446b2f4dfc))
+
 ## [2.1.4](https://github.com/herbsjs/herbs2gql/compare/v2.1.3...v2.1.4) (2022-04-20)
 
 
