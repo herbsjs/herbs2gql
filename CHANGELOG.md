@@ -1,3 +1,10 @@
+## [2.1.4](https://github.com/herbsjs/herbs2gql/compare/v2.1.3...v2.1.4) (2022-04-20)
+
+
+### Bug Fixes
+
+* update semantic release version ([0a20216](https://github.com/herbsjs/herbs2gql/commit/0a20216e279e9f5d4df3c8cbacde2fc5e6898505))
+
 ## [2.1.3](https://github.com/herbsjs/herbs2gql/compare/v2.1.2...v2.1.3) (2022-04-16)
 
 
