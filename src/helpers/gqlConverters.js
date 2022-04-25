@@ -24,7 +24,6 @@ function usecaseRequest2gql(useCase, presence) {
         const type = useCase.requestSchema[field]
         let name = requestFieldType2gql(type, presence, true)
         output.push(`${field}: ${name}`)
-
     }
     return output.join(`, `)
 }
@@ -43,7 +42,7 @@ function schemaOptions(options) {
 
 function entityFieldType2gql(type, param) {
     let name
-    if (Array.isArray(type)) name = `[${entityFieldType2gql(type[0])}]`
+    if (Array.isArray(type)) name = `[${entityFieldType2gql(type[0], param)}]`
     else if (type === Number) name = `Float`
     else if (type.prototype instanceof BaseEntity) {
         if(param == 'type')  name = upperFirst(camelCase(type.name))
