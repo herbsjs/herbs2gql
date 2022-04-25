@@ -1,3 +1,10 @@
+## [2.1.6](https://github.com/herbsjs/herbs2gql/compare/v2.1.5...v2.1.6) (2022-04-25)
+
+
+### Bug Fixes
+
+* 🐛 update graphql dependency ([2f4a2ff](https://github.com/herbsjs/herbs2gql/commit/2f4a2ff3415d0d77341057db68a6cd467e0457d8))
+
 ## [2.1.5](https://github.com/herbsjs/herbs2gql/compare/v2.1.4...v2.1.5) (2022-04-20)
 
 
