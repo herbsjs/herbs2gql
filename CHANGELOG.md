@@ -1,3 +1,11 @@
+## [2.1.7](https://github.com/herbsjs/herbs2gql/compare/v2.1.6...v2.1.7) (2022-06-10)
+
+
+### Bug Fixes
+
+* add peerDependencie and update dependencies ([4f6e74e](https://github.com/herbsjs/herbs2gql/commit/4f6e74ecc92d28b1fdac2f9f935eac87b41bd803))
+* add peerDependencies and update dependencies ([18e2cb6](https://github.com/herbsjs/herbs2gql/commit/18e2cb62c2cf044c702778172cb16e8ce49869e1))
+
 ## [2.1.6](https://github.com/herbsjs/herbs2gql/compare/v2.1.5...v2.1.6) (2022-04-25)
 
 
