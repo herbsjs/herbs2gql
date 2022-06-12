@@ -1,6 +1,6 @@
 const { entity2type, usecase2mutation, usecase2query, defaultResolver } = require("./herbs2gql")
 
-function generate(herbarium) {
+function generateFromHerbarium(herbarium) {
   const { usecases, entities, crud } = herbarium
 
   const entitiesName = Array.from(entities.all.values()).map(e => e.entity)
@@ -26,4 +26,4 @@ function generate(herbarium) {
   return { types, queries, mutations }
 }
 
-module.exports = generate
+module.exports = generateFromHerbarium
