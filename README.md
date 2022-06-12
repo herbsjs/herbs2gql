@@ -149,6 +149,16 @@ const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 ```
 ​
 Or you can use `herbs2gql` [`defaultResolver`](https://github.com/herbsjs/herbs2gql/blob/master/src/defaultResolver.js) implementation as a reference. 
+
+### Herbarium integration
+If your project uses `Herbarium` as discovery service you can use herbs2gql with less code:
+
+```javascript
+const { herbarium } = require('@herbsjs/herbarium')
+const { herbs2gql } = require('@herbsjs/herbs2gql')
+
+const { mutations, queries, types } = herbs2gql(herbarium)
+```
 ​
 #### Error Handling
 
