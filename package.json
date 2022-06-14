@@ -34,6 +34,7 @@
   "license": "MIT",
   "homepage": "https://github.com/herbsjs/herbs2gql#readme",
   "dependencies": {
+    "@herbsjs/herbarium": "^1.4.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
