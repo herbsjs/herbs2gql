@@ -16,7 +16,6 @@ const givenAMutationUseCase = (injection) =>
     request: {
       arrayField: [CoolEntity],
     },
-
     response: Boolean,
   });
 
@@ -25,7 +24,6 @@ const givenAQueryUseCase = (injection) =>
     request: {
       id: Number,
     },
-
     response: CoolEntity,
   });
 
