@@ -1,5 +1,5 @@
-const { herbarium } = require('@herbsjs/herbarium');
-const { entity, field, id, usecase } = require('@herbsjs/herbs');
+const { herbarium } = require('@herbsjs/herbarium')
+const { entity, field, id, usecase } = require('@herbsjs/herbs')
 
 const CoolEntity = entity('CoolEntity', {
   id: id(Number),
@@ -9,7 +9,7 @@ const CoolEntity = entity('CoolEntity', {
   anotherCoolField: field(Boolean, {
     default: false,
   }),
-});
+})
 
 const givenAMutationUseCase = (injection) =>
   usecase('CreateSomethingCool', {
@@ -17,7 +17,7 @@ const givenAMutationUseCase = (injection) =>
       arrayField: [CoolEntity],
     },
     response: Boolean,
-  });
+  })
 
 const givenAQueryUseCase = (injection) =>
   usecase('GetSomethingCool', {
@@ -25,18 +25,18 @@ const givenAQueryUseCase = (injection) =>
       id: Number,
     },
     response: CoolEntity,
-  });
+  })
 
-herbarium.entities.add(CoolEntity, 'CoolEntity').entity;
+herbarium.entities.add(CoolEntity, 'CoolEntity').entity
 herbarium.usecases.add(givenAMutationUseCase, 'CreateSomethingCool').metadata({
   group: 'genericGroup',
   operation: herbarium.crud.create,
   entity: CoolEntity,
-});
+})
 herbarium.usecases.add(givenAQueryUseCase, 'GetSomethingCool').metadata({
   group: 'genericGroup',
   operation: herbarium.crud.read,
   entity: CoolEntity,
-});
+})
 
-module.exports = { herbarium };
+module.exports = { herbarium }
