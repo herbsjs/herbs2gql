@@ -3,7 +3,7 @@ const entity2type = require('./entity2type')
 const usecase2mutation = require('./usecase2mutation')
 const usecase2query = require('./usecase2query')
 
-function herbarium2gql(herbarium) {
+function  herbs2gql(herbarium) {
   const { usecases, entities, crud } = herbarium
 
   const entitiesName = Array.from(entities.all.values()).map((e) => e.entity)
@@ -38,4 +38,4 @@ function herbarium2gql(herbarium) {
   return { types, queries, mutations }
 }
 
-module.exports = herbarium2gql
+module.exports =  herbs2gql
