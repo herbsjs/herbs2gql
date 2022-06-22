@@ -1,11 +1,11 @@
 const assert = require('assert')
 const { herbarium } = require('./support/herbarium/genericHerbariumObject')
-const { herbarium2gql } = require('../src/herbs2gql')
+const { herbs2gql } = require('../src/herbs2gql')
 
 describe('Hebarium to GQL', () => {
   it('Should be able to create types, queries and mutations based on herbarium object', async () => {
     // given
-    const { types, queries, mutations } = herbarium2gql(herbarium)
+    const { types, queries, mutations } = herbs2gql(herbarium)
 
     // then
     assert.deepStrictEqual(types, [
