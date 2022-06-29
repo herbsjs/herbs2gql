@@ -1,3 +1,25 @@
+# [2.2.0](https://github.com/herbsjs/herbs2gql/compare/v2.1.7...v2.2.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* changed file name ([0fa7003](https://github.com/herbsjs/herbs2gql/commit/0fa7003d5273d218fe78b2ddf7460e24acb2cb04))
+* changed herbarium dependency to peerDependencies ([25f7ac3](https://github.com/herbsjs/herbs2gql/commit/25f7ac3ed7e209ba9c49de6fcc7d448ae277aa61))
+* ci ([33036b2](https://github.com/herbsjs/herbs2gql/commit/33036b245f5f2a1174163b9ad5aaf96b9af4c847))
+* cr ([cc08b8e](https://github.com/herbsjs/herbs2gql/commit/cc08b8e7388ee322c5653f00ee47f65a8811929a))
+* lint ([0b3e761](https://github.com/herbsjs/herbs2gql/commit/0b3e761711e63e4886b8bfacddb327dd978c29f7))
+* removed empty spaces ([e2df351](https://github.com/herbsjs/herbs2gql/commit/e2df3518d838322455b07a5ae7d6900b98412bf0))
+* removed only from test ([9cf5cc5](https://github.com/herbsjs/herbs2gql/commit/9cf5cc5868c59c685d8915b20034779041fc9b24))
+* tests ([a23473f](https://github.com/herbsjs/herbs2gql/commit/a23473f7e4035c44bc83361907ca3f6682a68e82))
+* tests ([7e41ea6](https://github.com/herbsjs/herbs2gql/commit/7e41ea63d5a8519e4f063c30e4014448939ca3be))
+
+
+### Features
+
+* added new feature to readme and changed herbarium integration name ([c5dc37d](https://github.com/herbsjs/herbs2gql/commit/c5dc37d6d4e9df812acae22632317199f925778b))
+* created initial structure ([82af7ab](https://github.com/herbsjs/herbs2gql/commit/82af7ab79bde6218e30d2f16e058607fba0ead70))
+* tests and improved herbarium2gql ([e18324f](https://github.com/herbsjs/herbs2gql/commit/e18324f4f855bd969ef8d8a142a36a43d949a7a7))
+
 ## [2.1.7](https://github.com/herbsjs/herbs2gql/compare/v2.1.6...v2.1.7) (2022-06-10)
 
 
