@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
+    "@herbsjs/herbarium": "^1.4.0",
     "@herbsjs/herbs": "^1.4.5",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
@@ -63,6 +64,7 @@
     "serialize-javascript": ">=6.0.0"
   },
   "peerDependencies": {
+    "@herbsjs/herbarium": "^1.4.0",
     "@herbsjs/herbs": "^1.4.5",
     "apollo-server": "^3.8.2",
     "apollo-server-express": "^3.8.2",

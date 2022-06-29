@@ -7,4 +7,5 @@ module.exports = {
     defaultResolver: require('./defaultResolver'),
     defaultErrorHandler: require('./defaultErrorHandler').defaultErrorHandler,
     args2request: require('./args2request'),
+    herbs2gql: require('./herbarium2gql')
 }

@@ -11,6 +11,16 @@ herbs2gql creates GraphQL types based on herbs entities ([gotu](https://github.c
 ​
 All methods returns a string in GraphQL format representing the type based ([gql](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#gql)) and a [resolver](https://www.apollographql.com/docs/apollo-server/data/resolvers/) (when expected).
 ​
+### Herbarium integration
+If your project uses `Herbarium` as discovery service you can use herbs2gql with less code:
+
+```javascript
+const { herbarium } = require('@herbsjs/herbarium')
+const { herbs2gql } = require('@herbsjs/herbs2gql')
+
+const { mutations, queries, types } = herbs2gql(herbarium)
+```
+
 #### GraphQL Type
 ​
 To convert a Herbs Entity to GraphQL Type:
@@ -149,7 +159,7 @@ const [gql, resolver] = usecase2mutation(usecase, resolverFunc)
 ```
 ​
 Or you can use `herbs2gql` [`defaultResolver`](https://github.com/herbsjs/herbs2gql/blob/master/src/defaultResolver.js) implementation as a reference. 
-​
+
 #### Error Handling
 
 `herbs2gql` deals with errors in the default resolver. It translates the usecase's errors into graphql errors:
