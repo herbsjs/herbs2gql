@@ -3,7 +3,7 @@ const { herbarium } = require('./support/herbarium/genericHerbariumObject')
 const { herbs2gql } = require('../src/herbs2gql')
 
 describe('Hebarium to GQL', () => {
-  it.only('Should be able to create types, queries and mutations based on herbarium object', async () => {
+  it('Should be able to create types, queries and mutations based on herbarium object', async () => {
     // given
     const { types, queries, mutations } = herbs2gql(herbarium)
 
