@@ -55,6 +55,7 @@ dateArrayField: [Date]
 
       const givenAnSecondEntity = entity("Entity Two", {
         entityField: field(givenAnFirstEntity),
+        entityList: field([givenAnFirstEntity]),
         customEntityFunction: function () { }
       })
 
@@ -71,6 +72,7 @@ numberField: Float
 }
       input EntityTwoInput {
 entityField: EntityOneInput
+entityList: [EntityOneInput]
 }`
       )
     }) 
