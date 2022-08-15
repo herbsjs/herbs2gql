@@ -1,3 +1,11 @@
+## [2.2.1](https://github.com/herbsjs/herbs2gql/compare/v2.2.0...v2.2.1) (2022-08-15)
+
+
+### Bug Fixes
+
+* **herbs:** update herbs dependency ([5cbe94c](https://github.com/herbsjs/herbs2gql/commit/5cbe94cfb7d2fbce6c9ee79d544da6da8f380a8d))
+* **herbs:** update herbs version ([a4083b3](https://github.com/herbsjs/herbs2gql/commit/a4083b35b22daf7f016a1278d059bf15e52f4701))
+
 # [2.2.0](https://github.com/herbsjs/herbs2gql/compare/v2.1.7...v2.2.0) (2022-06-29)
 
 
