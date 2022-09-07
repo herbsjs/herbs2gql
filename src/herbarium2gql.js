@@ -3,7 +3,7 @@ const entity2type = require('./entity2type')
 const usecase2mutation = require('./usecase2mutation')
 const usecase2query = require('./usecase2query')
 
-function  herbs2gql(herbarium) {
+function  herbs2gql({herbarium, resolver = defaultResolver}) {
   const { usecases, entities, crud } = herbarium
 
   const entitiesName = Array.from(entities.all.values()).map((e) => e.entity)
@@ -15,10 +15,10 @@ function  herbs2gql(herbarium) {
     .map((e) => e.usecase)
 
   const mutations = mutatitonUseCases.map((usecase) =>
-    usecase2mutation(usecase(), defaultResolver(usecase))
+    usecase2mutation(usecase(), resolver(usecase))
   )
   const queries = queryUseCases.map((usecase) =>
-    usecase2query(usecase(), defaultResolver(usecase))
+    usecase2query(usecase(), resolver(usecase))
   )
   const defaultSchema = [
     `
