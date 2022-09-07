@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/herbsjs/herbs2gql/compare/v2.2.1...v2.3.0) (2022-09-07)
+
+
+### Features
+
+* **herbs2gql:** let a default resolver be informed on herbs2gql() ([31f637d](https://github.com/herbsjs/herbs2gql/commit/31f637dbe9dfdf77df95459a191f345905bf40a6))
+
 ## [2.2.1](https://github.com/herbsjs/herbs2gql/compare/v2.2.0...v2.2.1) (2022-08-15)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@herbsjs/herbs2gql",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Domain entities javascript library.",
   "main": "./src/herbs2gql.js",
   "scripts": {
