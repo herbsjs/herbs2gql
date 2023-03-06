@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/herbsjs/herbs2gql/compare/v2.3.0...v2.3.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* **package.json:** up herbs version ([b7ce0ac](https://github.com/herbsjs/herbs2gql/commit/b7ce0ac993effacf00d6465b184bf48ec2ea23f0))
+
 # [2.3.0](https://github.com/herbsjs/herbs2gql/compare/v2.2.1...v2.3.0) (2022-09-07)
 
 
