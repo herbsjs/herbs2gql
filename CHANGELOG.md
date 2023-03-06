@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/herbsjs/herbs2gql/compare/v2.3.1...v2.3.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* **package.json:** up herbs in peerDependencies ([bb5f6fd](https://github.com/herbsjs/herbs2gql/commit/bb5f6fdbb9065f151fe7f416b7a4d35602070802))
+
 ## [2.3.1](https://github.com/herbsjs/herbs2gql/compare/v2.3.0...v2.3.1) (2023-03-06)
 
 
