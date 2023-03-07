@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/herbsjs/herbs2gql/compare/v2.3.2...v3.0.0) (2023-03-07)
+
+
+### Continuous Integration
+
+* fix ci ([cce8763](https://github.com/herbsjs/herbs2gql/commit/cce87633a99d78d9ec72acb4920b14d2a4a6331c))
+
+
+### BREAKING CHANGES
+
+* upgrade buchu to 2.0
+
 ## [2.3.2](https://github.com/herbsjs/herbs2gql/compare/v2.3.1...v2.3.2) (2023-03-06)
 
 
