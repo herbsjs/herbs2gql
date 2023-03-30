@@ -1,3 +1,10 @@
+# [3.1.0-beta.1](https://github.com/herbsjs/herbs2gql/compare/v3.0.0...v3.1.0-beta.1) (2023-03-30)
+
+
+### Features
+
+* **depencency:** bump herbs version ([bc6ab31](https://github.com/herbsjs/herbs2gql/commit/bc6ab3140e6ae7f791e92359215feb4e05e3cf2c))
+
 # [3.0.0](https://github.com/herbsjs/herbs2gql/compare/v2.3.2...v3.0.0) (2023-03-07)
 
 
