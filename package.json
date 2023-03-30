@@ -20,7 +20,7 @@
     "url": "https://github.com/herbsjs/herbs2gql/issues/"
   },
   "engines": {
-    "node": ">= 14.x"
+    "node": ">= 16.x"
   },
   "keywords": [
     "domain",
