@@ -1,6 +1,5 @@
-const { checker } = require('@herbsjs/suma')
 const { camelCase, upperFirst } = require('lodash')
-const { BaseEntity } = require('@herbsjs/gotu/src/baseEntity')
+const { checker, entity } = require('@herbsjs/herbs')
 const stringCase = require('./stringCase')
 
 function requestFieldType2gql(type, presence, input) {
@@ -9,7 +8,7 @@ function requestFieldType2gql(type, presence, input) {
         name = `[${requestFieldType2gql(type[0], false, input)}]`
     else if (type === Number)
         name = `Float`
-    else if (type.prototype instanceof BaseEntity) 
+    else if (entity.isEntity(type)) 
         name = `${upperFirst(camelCase(type.name))}${input ? 'Input' : ''}`
     else
         name = stringCase.pascalCase(type.name)
@@ -44,7 +43,7 @@ function entityFieldType2gql(type, param) {
     let name
     if (Array.isArray(type)) name = `[${entityFieldType2gql(type[0], param)}]`
     else if (type === Number) name = `Float`
-    else if (type.prototype instanceof BaseEntity) {
+    else if (entity.isEntity(type)) {
         if(param == 'type')  name = upperFirst(camelCase(type.name))
         if(param == 'input') name = `${upperFirst(camelCase(type.name))}Input`
     }
