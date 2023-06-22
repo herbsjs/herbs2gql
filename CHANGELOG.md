@@ -1,3 +1,10 @@
+# [3.1.0-beta.2](https://github.com/herbsjs/herbs2gql/compare/v3.1.0-beta.1...v3.1.0-beta.2) (2023-06-22)
+
+
+### Bug Fixes
+
+* **herbs:** fix herbs dependencies ([2c3c451](https://github.com/herbsjs/herbs2gql/commit/2c3c451d8a95530451edf1a24e8d1023abf31fc8))
+
 # [3.1.0-beta.1](https://github.com/herbsjs/herbs2gql/compare/v3.0.0...v3.1.0-beta.1) (2023-03-30)
 
 
