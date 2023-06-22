@@ -15,6 +15,18 @@ describe('Hebarium to GQL', () => {
       [
         "type CoolEntity {\nid: Float\nstringField: String!\nboolField: Boolean\ndateField: Date\nnumberField: Float\n}",
       ],
+      [
+        "input CoolEntityInput {\nid: Float\nstringField: String!\nboolField: Boolean\ndateField: Date\nnumberField: Float\n}"
+      ],
+      [
+        "input CreateSomethingCoolInput {\ncoolEntity: [CoolEntityInput]\n}"
+      ],
+      [
+        "input GetSomethingCoolInput {\nid: Float\n}"
+      ],
+      [
+        "input GivenAnUseCaseThatResturnsDateInput {\nid: Float\ndate: Date\n}"
+      ]
     ])
     assert.deepStrictEqual(
       queries[0][0],
