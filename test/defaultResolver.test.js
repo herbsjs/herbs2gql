@@ -10,17 +10,37 @@ describe('GraphQL - Default Resolver', () => {
                 request: { id: Number },
                 response: Number,
                 authorize: async () => Ok(),
-                'Step 1': step((ctx) => { return Ok(ctx.ret = 'result') }
+                'Step 1': step((ctx) => { return Ok(ctx.ret = ctx.req) }
                 )
             })
 
         const resolver = defaultResolver(AUseCase)
 
         // When
-        const ret = await resolver(null, {}, { user: {} })
+        const ret = await resolver(null, { id: 2, field1: 'x' }, { user: {} })
 
         // Then
-        assert.deepStrictEqual(ret, 'result')
+        assert.deepStrictEqual(ret, { id: 2 })
+    })
+
+    it('should resolve a mutation and run a use case', async () => {
+        // Given
+        const AUseCase = () =>
+            usecase('Use Case X', {
+                request: { id: Number },
+                response: Number,
+                authorize: async () => Ok(),
+                'Step 1': step((ctx) => { return Ok(ctx.ret = ctx.req) }
+                )
+            })
+
+        const resolver = defaultResolver(AUseCase)
+
+        // When
+        const ret = await resolver(null, { input: { id: 1, field1: 'xyz' } }, { user: {} }, { operation: { operation: 'mutation' } })
+
+        // Then
+        assert.deepStrictEqual(ret, { id: 1 })
     })
 
     it('should not run a use case if not autorized and throw a ForbiddenError', async () => {

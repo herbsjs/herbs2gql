@@ -11,17 +11,12 @@ function entity2type(entity, options = {}) {
     throw error
   }
 
-  let convention = defaultConvention
-  if(options && options.convention && options.convention.inputNameRule) 
-    convention = options.convention.inputNameRule
-
-  let name
-  if (options && options.inputName) name = options.inputName
-  else name = convention(entity.name)
+  let convention = options?.convention?.inputNameRule || defaultConvention
+  const name = options?.inputName || convention(entity.name)
 
   let gql = ""
   gql += `type ${name} {\n`
-  gql += entityField2gql(entity, 'type')
+  gql += entityField2gql(entity, 'type', entityField2gql.ids.includes)
   gql += "}"
   return gql
 }

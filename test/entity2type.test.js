@@ -1,5 +1,5 @@
 const assert = require("assert")
-const { entity, field } = require("@herbsjs/gotu")
+const { entity, id, field } = require("@herbsjs/gotu")
 const { entity2type } = require("../src/herbs2gql")
 describe("Entity 2GQL Type", () => {
 
@@ -7,6 +7,7 @@ describe("Entity 2GQL Type", () => {
     it("should convert an entity to type", async () => {
       // given
       const givenAnEntity = entity("Entity", {
+        id1Field: id(String),
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -31,6 +32,7 @@ describe("Entity 2GQL Type", () => {
       assert.deepStrictEqual(
         gql,
         `type Entity {
+id1Field: String
 stringField: String
 stringArrayField: [String]
 numberField: Float

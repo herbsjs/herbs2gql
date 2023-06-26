@@ -10,17 +10,16 @@ function entity2input(entity, options = {}) {
     error.invalidArgs = validation
     throw error
   }
+  const hasIDs = (entity) => entity.schema.fields.some((field) => field.options?.isId)
+  const convention = options?.convention?.inputNameRule || defaultConvention
+  const name = options?.inputName || convention(entity.name)
+  let gql = `input ${name}Input {\n${entityField2gql(entity, 'input', entityField2gql.ids.excludes)}}`
+  if (hasIDs(entity))
+    gql += `\ninput ${name}IDsInput {\n${entityField2gql(entity, 'IDsInput', entityField2gql.ids.only)}}`
 
-  let convention = defaultConvention
-  if(options && options.convention && options.convention.inputNameRule)
-    convention = options.convention.inputNameRule 
-
-  let name
-  if (options && options.inputName) name = options.inputName
-  else name = convention(entity.name)
-
-  let gql = `input ${name}Input {\n${entityField2gql(entity, 'input')}}`
   return gql
 }
+
+
 
 module.exports = entity2input

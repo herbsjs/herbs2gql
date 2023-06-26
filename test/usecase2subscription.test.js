@@ -1,6 +1,5 @@
 const assert = require('assert')
-const { usecase } = require('@herbsjs/buchu')
-const { entity, field } = require('@herbsjs/gotu')
+const { usecase, entity, field } = require('@herbsjs/herbs')
 const { usecase2subscription } = require("../src/herbs2gql")
 const User = require('./support/gotu/users')
 

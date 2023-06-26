@@ -1,4 +1,4 @@
-const { camelCase } = require('lodash')
+const { camelCase, upperFirst } = require('lodash')
 const { schemaOptions, usecaseResponse2gql, usecaseFieldToParams } = require("./helpers/gqlConverters")
 const { checker } = require('@herbsjs/suma')
 const { useCaseValidator } = require('./herbsValidator')
@@ -14,21 +14,23 @@ function usecase2type(type, useCase, resolverFunc, options) {
         throw error
     }
 
-    let convention = camelCase
-    if(options && options.convention && options.convention.inputNameRule) 
-        convention = options.convention.inputNameRule
+    const ucParams = (useCase, schema, nameFormatted) => {
+        if (checker.isEmpty(useCase.requestSchema)) return ''
+        if (type === 'Mutation') return `(input: ${upperFirst(camelCase(nameFormatted))}Input)`
+        else return usecaseFieldToParams(useCase, schema)
+    }
 
-    let nameFormatted
-    if (options && options.inputName) nameFormatted = options.inputName
-    else  nameFormatted = convention(useCase.description)
-
-    const usecaseParams = usecaseFieldToParams(useCase, schema)
+    const convention = options?.convention?.inputNameRule || camelCase
+    const nameFormatted = options?.inputName || convention(useCase.description)
+    const usecaseParams = ucParams(useCase, schema, nameFormatted)
     const usecaseResponse = usecaseResponse2gql(useCase, schema.presenceOnResponse)
-    
+
     const gql = `extend type ${type} { ${nameFormatted} ${usecaseParams}: ${usecaseResponse} }`
     const resolver = { [type]: { [nameFormatted]: resolverFunc } }
 
     return [gql, resolver]
 }
+
+
 
 module.exports = usecase2type

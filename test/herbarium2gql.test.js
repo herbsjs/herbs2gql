@@ -10,23 +10,91 @@ describe('Hebarium to GQL', () => {
     // then
     assert.deepStrictEqual(types, [
       [
-        "\n    type Query {\n        _: Boolean\n      }\n    \n      type Mutation {\n        _: Boolean\n      }",
+        `
+    type Query {
+        _: Boolean
+      }
+    
+      type Mutation {
+        _: Boolean
+      }`,
+      ],[
+        `type SimpleEntity {
+id: Float
+stringField: String
+}`,
       ],
       [
-        "type CoolEntity {\nid: Float\nstringField: String!\nboolField: Boolean\ndateField: Date\nnumberField: Float\n}",
+        `type NoIdEntity {
+stringField: String
+}`,
       ],
       [
-        "input CoolEntityInput {\nid: Float\nstringField: String!\nboolField: Boolean\ndateField: Date\nnumberField: Float\n}"
+        `type CoolEntity {
+id: Float
+stringField: String!
+boolField: Boolean
+dateField: Date
+numberField: Float
+simpleEntity: SimpleEntity
+simpleEntityArray: [SimpleEntity]
+noIDEntity: NoIdEntity
+noIDEntityArray: [NoIdEntity]
+}`,
       ],
       [
-        "input CreateSomethingCoolInput {\ncoolEntity: [CoolEntityInput]\n}"
+        `input SimpleEntityInput {
+stringField: String
+}
+input SimpleEntityIDsInput {
+id: Float
+}`
       ],
       [
-        "input GetSomethingCoolInput {\nid: Float\n}"
+        `input NoIdEntityInput {
+stringField: String
+}`
       ],
       [
-        "input GivenAnUseCaseThatResturnsDateInput {\nid: Float\ndate: Date\n}"
-      ]
+        `input CoolEntityInput {
+stringField: String!
+boolField: Boolean
+dateField: Date
+numberField: Float
+simpleEntity: SimpleEntityIDsInput
+simpleEntityArray: [SimpleEntityIDsInput]
+noIDEntity: NoIdEntityInput
+noIDEntityArray: [NoIdEntityInput]
+}
+input CoolEntityIDsInput {
+id: Float
+}`
+      ],
+      [
+        `input CreateSomethingCoolInput {
+stringField: String
+boolField: Boolean
+dateField: Date
+numberField: Float
+simpleEntity: SimpleEntityIDsInput
+simpleEntityArray: [SimpleEntityIDsInput]
+noIDEntity: NoIdEntityInput
+noIDEntityArray: [NoIdEntityInput]
+}`
+      ],
+      [
+        `input UpdateSomethingCoolInput {
+id: Float
+stringField: String
+boolField: Boolean
+dateField: Date
+numberField: Float
+simpleEntity: SimpleEntityIDsInput
+simpleEntityArray: [SimpleEntityIDsInput]
+noIDEntity: NoIdEntityInput
+noIDEntityArray: [NoIdEntityInput]
+}`
+      ],
     ])
     assert.deepStrictEqual(
       queries[0][0],
@@ -38,7 +106,11 @@ describe('Hebarium to GQL', () => {
     )
     assert.deepStrictEqual(
       mutations[0][0],
-      'extend type Mutation { createSomethingCool (coolEntity: [CoolEntityInput]) : Boolean }'
+      'extend type Mutation { createSomethingCool (input: CreateSomethingCoolInput): CoolEntity }'
+    )
+    assert.deepStrictEqual(
+      mutations[1][0],
+      'extend type Mutation { updateSomethingCool (input: UpdateSomethingCoolInput): CoolEntity }'
     )
   })
 })

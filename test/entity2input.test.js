@@ -1,5 +1,5 @@
 const assert = require("assert")
-const { entity, field } = require("@herbsjs/gotu")
+const { entity, id, field } = require("@herbsjs/gotu")
 const { entity2input } = require("../src/herbs2gql")
 
 describe("Entity 2GQL Input", () => {
@@ -8,6 +8,8 @@ describe("Entity 2GQL Input", () => {
     it("should convert an entity to input", async () => {
       // given
       const givenAnInput = entity("An Entity", {
+        id1Field: id(String),
+        id2Field: id(Number, { validation: { presence: true } }),
         stringField: field(String),
         stringArrayField: field([String]),
         numberField: field(Number),
@@ -42,11 +44,15 @@ booleanField: Boolean
 booleanArrayField: [Boolean]
 dateField: Date
 dateArrayField: [Date]
+}
+input AnEntityIDsInput {
+id1Field: String
+id2Field: Float!
 }`
       )
     })
 
-     it("should convert an entity to input when entity has entity references", async () => {
+    it("should convert an entity to input when entity has entity references", async () => {
       // given
       const givenAnFirstEntity = entity("Entity One", {
         numberField: field(Number),
@@ -62,7 +68,6 @@ dateArrayField: [Date]
       // when
       const gql = `${entity2input(givenAnFirstEntity)}
       ${entity2input(givenAnSecondEntity)}`
-      
 
       // then
       assert.deepStrictEqual(
@@ -75,8 +80,44 @@ entityField: EntityOneInput
 entityList: [EntityOneInput]
 }`
       )
-    }) 
-  
+    })
+
+    it("should convert an entity to input when entity has entity references (with IDs)", async () => {
+      // given
+      const givenAnFirstEntity = entity("Entity One", {
+        id1Field: id(Number),
+        id2Field: id(String, { validation: { presence: true } }),
+        numberField: field(Number),
+        customEntityFunction: function () { }
+      })
+
+      const givenAnSecondEntity = entity("Entity Two", {
+        entityField: field(givenAnFirstEntity),
+        entityList: field([givenAnFirstEntity]),
+        customEntityFunction: function () { }
+      })
+
+      // when
+      const gql = `${entity2input(givenAnFirstEntity)}
+      ${entity2input(givenAnSecondEntity)}`
+
+      // then
+      assert.deepStrictEqual(
+        gql,
+        `input EntityOneInput {
+numberField: Float
+}
+input EntityOneIDsInput {
+id1Field: Float
+id2Field: String!
+}
+      input EntityTwoInput {
+entityField: EntityOneIDsInput
+entityList: [EntityOneIDsInput]
+}`
+      )
+    })
+
 
     it("should convert an entity to input with convention", async () => {
       // given
@@ -98,8 +139,8 @@ entityList: [EntityOneInput]
         customEntityFunction: function () { }
       })
 
-      const options = { convention: { inputNameRule:(str) => `snake_case_${str}` }}
-      
+      const options = { convention: { inputNameRule: (str) => `snake_case_${str}` } }
+
       // when
       const gql = entity2input(givenAnInput, options)
 
@@ -141,7 +182,7 @@ dateArrayField: [Date]
         customEntityFunction: function () { }
       })
 
-      const options = {inputName: 'An-Entity'}
+      const options = { inputName: 'An-Entity' }
       // when
       const gql = entity2input(givenAnInput, options)
 

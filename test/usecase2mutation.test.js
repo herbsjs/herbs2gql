@@ -1,8 +1,6 @@
 const assert = require('assert')
-const { usecase } = require('@herbsjs/buchu')
-const { entity, field } = require('@herbsjs/gotu')
+const { usecase } = require('@herbsjs/herbs')
 const { usecase2mutation } = require("../src/herbs2gql")
-const User = require('./support/gotu/users')
 
 describe('UseCase 2 GQL Mutation', () => {
 
@@ -24,28 +22,38 @@ describe('UseCase 2 GQL Mutation', () => {
             assert.deepStrictEqual(gql, `extend type Mutation { useCaseTest : Boolean }`)
             assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
         })
+    })
 
-        it('should convert a usecase without request and basic output to GQL with options convention startcase', async () => {
+    context('when a convention is given', () => {
+        it('should convert a usecase with convention for name', async () => {
             // given
             const givenAnUseCase = usecase('usecasetest', {
+                request: {
+                    stringField: String,
+                },
                 response: Boolean
             })
 
             // eslint-disable-next-line no-unused-vars            
             const resolverFunc = (parent, args, context, info) => { }
 
-            const options = { convention: { inputNameRule: (str) => `mutation-${str}` }}
+            const options = { convention: { inputNameRule: (str) => `mutation-${str}` } }
             // when
             const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 
             // then
-            assert.deepStrictEqual(gql, `extend type Mutation { mutation-usecasetest : Boolean }`)
+            assert.deepStrictEqual(gql, `extend type Mutation { mutation-usecasetest (input: MutationUsecasetestInput): Boolean }`)
             assert.deepStrictEqual(resolver, { Mutation: { "mutation-usecasetest": resolverFunc } })
         })
+    })
 
+    context('when a custom name is given', () => {
         it('should convert a usecase without request and basic output to GQL with customName', async () => {
             // given
             const givenAnUseCase = usecase('UseCaseTest', {
+                request: {
+                    stringField: String,
+                },
                 response: Boolean
             })
 
@@ -57,14 +65,13 @@ describe('UseCase 2 GQL Mutation', () => {
             const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, options)
 
             // then
-            assert.deepStrictEqual(gql, `extend type Mutation { Use_Case_Test : Boolean }`)
+            assert.deepStrictEqual(gql, `extend type Mutation { Use_Case_Test (input: UseCaseTestInput): Boolean }`)
             assert.deepStrictEqual(resolver, { Mutation: { Use_Case_Test: resolverFunc } })
         })
-
     })
 
     context('when schema is simple data', () => {
-        it('should convert a usecase with primitive request params types and basic output to GQL', async () => {
+        it('should convert a usecase with a input type', async () => {
             // given
             const givenAnUseCase = usecase('UseCaseTest', {
                 request: {
@@ -85,247 +92,9 @@ describe('UseCase 2 GQL Mutation', () => {
 
             // then
             assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : Boolean }`
+                `extend type Mutation { useCaseTest (input: UseCaseTestInput): Boolean }`
             )
             assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-        })
-    })
-
-    context('when schema is array data', () => {
-        it('should convert a usecase with array request params types and basic output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: [String],
-                    numberField: [Number],
-                    dateField: [Date],
-                    booleanField: [Boolean]
-                },
-
-                response: Boolean
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc)
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: [String], numberField: [Float], dateField: [Date], booleanField: [Boolean]) : Boolean }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-        })
-
-        it('should convert a usecase with primitive request params types and array output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean
-                },
-
-                response: [Boolean]
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc)
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : [Boolean] }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-
-        })
-    })
-
-    context('when schema is complex data', () => {
-        it('should convert a usecase with primitive request params types and gotu entity output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean
-                },
-
-                response: User
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc)
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : User }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-            
-        })
-
-        it('should convert an usecase with entity types and entity array on request params types and gotu array entity output to GQL', async () => {
-            // given
-            const GivenAnEntity = entity("Entity", {
-                numberField: field(Number),
-                customEntityFunction: function () { }
-            })
-
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean,
-                    entityField: GivenAnEntity,
-                    entityFieldArray: [GivenAnEntity]
-                },
-
-                response: [User]
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc)
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean, entityField: EntityInput, entityFieldArray: [EntityInput]) : [User] }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-
-        })
-    })
-
-    context('when schema is required data', () => {
-        it('should convert a usecase with not nullable request params types and gotu entity output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean
-                },
-
-                response: User
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, {
-                presenceOnRequest: true
-            })
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : User }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-
-        })
-
-        it('should convert a usecase with request params types and not nullable gotu entity output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean
-                },
-
-                response: User
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, {
-                presenceOnResponse: true
-            })
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String, numberField: Float, dateField: Date, booleanField: Boolean) : User! }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-
-        })
-
-        it('should convert a usecase with not nullable request params types and not nullable gotu entity output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean
-                },
-
-                response: User
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, {
-                presenceOnRequest: true,
-                presenceOnResponse: true
-            })
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : User! }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-
-        })
-
-        it('should convert a usecase with not nullable request params types and not nullable gotu array entity output to GQL', async () => {
-            // given
-            const givenAnUseCase = usecase('UseCaseTest', {
-                request: {
-                    stringField: String,
-                    numberField: Number,
-                    dateField: Date,
-                    booleanField: Boolean
-                },
-
-                response: [User]
-            })
-
-            // eslint-disable-next-line no-unused-vars
-            const resolverFunc = (parent, args, context, info) => { }
-
-            // when
-            const [gql, resolver] = usecase2mutation(givenAnUseCase, resolverFunc, {
-                presenceOnRequest: true,
-                presenceOnResponse: true
-            })
-
-            // then
-            assert.deepStrictEqual(gql,
-                `extend type Mutation { useCaseTest (stringField: String!, numberField: Float!, dateField: Date!, booleanField: Boolean!) : [User]! }`
-            )
-            assert.deepStrictEqual(resolver, { Mutation: { useCaseTest: resolverFunc } })
-
         })
     })
 
@@ -365,7 +134,7 @@ describe('UseCase 2 GQL Mutation', () => {
 
             // then
             assert.throws(() => usecase2mutation(givenAnUseCase, null), {
-                invalidArgs: { response: [{cantBeEmpty:true},{cantBeNull:true}] }
+                invalidArgs: { response: [{ cantBeEmpty: true }, { cantBeNull: true }] }
             })
         })
 

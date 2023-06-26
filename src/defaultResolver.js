@@ -23,7 +23,7 @@ function defaultResolver(usecase, { errorHandler } = defaultOptions) {
         }
 
         /* Execution */
-        const request = args2request(args, uc)
+        const request = args2request(args, uc, _info)
         const response = await uc.run(request)
 
         /* Audit */

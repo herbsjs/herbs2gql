@@ -13,7 +13,6 @@
                 "run-script",
                 "test"
             ],
-            "port": 9229,
             "skipFiles": [
                 "${workspaceFolder}/node_modules/**/*.js",
                 "<node_internals>/**"
