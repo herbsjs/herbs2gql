@@ -1,3 +1,15 @@
+# [4.0.0-beta.1](https://github.com/herbsjs/herbs2gql/compare/v3.1.0-beta.2...v4.0.0-beta.1) (2023-06-26)
+
+
+### Features
+
+* **gql:** change on how herbs2gql deals with inputs, entities and references IDs ([13ddcd1](https://github.com/herbsjs/herbs2gql/commit/13ddcd18bb7087cd4c1e93623816204a9bcdb9b9)), closes [#58](https://github.com/herbsjs/herbs2gql/issues/58)
+
+
+### BREAKING CHANGES
+
+* **gql:** The gql generated for mutations, inputs and ref IDs
+
 # [3.1.0-beta.2](https://github.com/herbsjs/herbs2gql/compare/v3.1.0-beta.1...v3.1.0-beta.2) (2023-06-22)
 
 
