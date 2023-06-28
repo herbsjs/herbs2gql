@@ -1,5 +1,5 @@
 const assert = require('assert')
-const { Ok, usecase, step, Err } = require('@herbsjs/herbs')
+const { entity, field, usecase, step, request, Ok, Err } = require('@herbsjs/herbs')
 const defaultResolver = require('../src/defaultResolver')
 
 describe('GraphQL - Default Resolver', () => {
@@ -41,6 +41,37 @@ describe('GraphQL - Default Resolver', () => {
 
         // Then
         assert.deepStrictEqual(ret, { id: 1 })
+    })
+
+    it('should resolve a mutation with complex request and run a use case', async () => {
+        // Given
+        const AnEntity = entity('An Entity', {
+            id: field(Number),
+            field1: field(String)
+        })
+
+        const AnComplexEntity = entity('An Complex Entity', {
+            id: field(Number),
+            field1: field(String),
+            entity1: field(AnEntity)
+        })
+
+        const AUseCase = () =>
+            usecase('Use Case X', {
+                request: request.from(AnComplexEntity),
+                response: Number,
+                authorize: async () => Ok(),
+                'Step 1': step((ctx) => { return Ok(ctx.ret = ctx.req) }
+                )
+            })
+
+        const resolver = defaultResolver(AUseCase)
+
+        // When
+        const ret = await resolver(null, { input: { id: 1, field1: 'xyz', field2: 123, entity1: { id: 1 } } }, { user: {} }, { operation: { operation: 'mutation' } })
+
+        // Then
+        assert.deepStrictEqual(JSON.parse(JSON.stringify(ret)), { id: 1, field1: 'xyz', entity1: { id: 1 } })
     })
 
     it('should not run a use case if not autorized and throw a ForbiddenError', async () => {
