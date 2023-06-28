@@ -1,3 +1,10 @@
+# [4.0.0-beta.2](https://github.com/herbsjs/herbs2gql/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2023-06-28)
+
+
+### Bug Fixes
+
+* **args2request:** fix args convertion to request when there is a entity on the use case request ([d144b7f](https://github.com/herbsjs/herbs2gql/commit/d144b7f2ef17baa16fefffca7cae1c3427e310ed))
+
 # [4.0.0-beta.1](https://github.com/herbsjs/herbs2gql/compare/v3.1.0-beta.2...v4.0.0-beta.1) (2023-06-26)
 
 
