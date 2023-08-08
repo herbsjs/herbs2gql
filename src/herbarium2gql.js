@@ -8,15 +8,19 @@ const { entity, field } = require('@herbsjs/herbs')
 
 
 function  herbs2gql({herbarium, resolver = defaultResolver}) {
-  const { usecases, entities, crud } = herbarium
+  const usecases = herbarium.nodes.find({ type: herbarium.node.usecase })
+  const entities = herbarium.nodes.find({ type: herbarium.node.entity })
+  const crud = herbarium.crud
 
-  const entitiesName = Array.from(entities.all.values()).map((e) => e.entity)
+  const entitiesName = entities.map((e) => e.value)
   const queryUseCases = usecases
-    .findBy({ operation: [crud.read, crud.readAll] })
-    .map((e) => e.usecase)
+    // find all usecases that are read or readAll
+    .filter((uc) => [crud.read, crud.readAll].includes(uc?.metadatas?.operation))
+    .map((e) => e.value)
   const mutatitonUseCases = usecases
-    .findBy({ operation: [crud.create, crud.update, crud.delete] })
-    .map((e) => e.usecase)
+    // .findBy({ operation: [crud.create, crud.update, crud.delete] })
+    .filter((uc) => [crud.create, crud.update, crud.delete].includes(uc?.metadatas?.operation))
+    .map((e) => e.value)
 
   const inputs = mutatitonUseCases.map((usecase) =>
     [usecase2input(usecase(), resolver(usecase))]

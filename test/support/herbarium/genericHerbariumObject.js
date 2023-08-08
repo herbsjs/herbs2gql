@@ -59,27 +59,19 @@ const givenAnUseCaseThatResturnsDate = (injection) =>
     response: Date,
   })
 
-herbarium.entities.add(SimpleEntity, 'SimpleEntity')
-herbarium.entities.add(NoIDEntity, 'NoIDEntity')
-herbarium.entities.add(CoolEntity, 'CoolEntity')
-herbarium.usecases.add(givenACreateUseCase, 'CreateSomethingCool').metadata({
-  group: 'genericGroup',
-  operation: herbarium.crud.create,
-  entity: CoolEntity,
-})
-herbarium.usecases.add(givenAUpdateUseCase, 'UpdateSomethingCool').metadata({
-  group: 'genericGroup',
-  operation: herbarium.crud.update,
-  entity: CoolEntity,
-})
-herbarium.usecases.add(givenAGetUseCase, 'GetSomethingCool').metadata({
-  group: 'genericGroup',
-  operation: herbarium.crud.read,
-  entity: CoolEntity,
-})
-herbarium.usecases.add(givenAnUseCaseThatResturnsDate, 'givenAnUseCaseThatResturnsDate').metadata({
-  group: 'genericGroup',
-  operation: herbarium.crud.read,
-})
+herbarium.nodes.add('SimpleEntity', SimpleEntity, herbarium.node.entity)
+herbarium.nodes.add('NoIDEntity', NoIDEntity, herbarium.node.entity)
+herbarium.nodes.add('CoolEntity', CoolEntity, herbarium.node.entity)
+herbarium.nodes.add('CreateSomethingCool', givenACreateUseCase, herbarium.node.usecase)
+  .metadata({ operation: herbarium.crud.create })
+  .link('CoolEntity')
+herbarium.nodes.add('UpdateSomethingCool', givenAUpdateUseCase, herbarium.node.usecase)
+  .metadata({ operation: herbarium.crud.update })
+  .link('CoolEntity')
+herbarium.nodes.add('GetSomethingCool', givenAGetUseCase, herbarium.node.usecase)
+  .metadata({ operation: herbarium.crud.read })
+  .link('CoolEntity')
+herbarium.nodes.add('givenAnUseCaseThatResturnsDate', givenAnUseCaseThatResturnsDate, herbarium.node.usecase)
+  .metadata({ operation: herbarium.crud.read })
 
 module.exports = { herbarium }

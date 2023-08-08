@@ -56,7 +56,7 @@ function entityFieldType2gql(type, param) {
             if (hasIDs(type)) name = `${typeNames}IDsInput`
             else name = `${typeNames}Input`
     }
-    else name = type.name
+    else name = upperFirst(camelCase(type.name))
     return name
 }
 
