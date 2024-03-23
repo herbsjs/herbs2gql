@@ -1,3 +1,10 @@
+# [4.0.0-beta.3](https://github.com/herbsjs/herbs2gql/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2024-03-23)
+
+
+### Features
+
+* **herbarium:** run on the new Herbarium Interface ([a1b38e4](https://github.com/herbsjs/herbs2gql/commit/a1b38e4f8713f6a663154d1f0aeea10dcb7f824f))
+
 # [4.0.0-beta.2](https://github.com/herbsjs/herbs2gql/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2023-06-28)
 
 
