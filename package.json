@@ -34,7 +34,7 @@
   "license": "MIT",
   "homepage": "https://github.com/herbsjs/herbs2gql#readme",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
